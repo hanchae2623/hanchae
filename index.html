@@ -1144,8 +1144,11 @@ section { padding: 140px 0; }
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* --- 1. 스토어 링크 스위치 ------------------------------------
-   스토어가 열리면 아래 한 줄만 실제 주소로 바꾸면 버튼이 자동 전환됩니다. */
-const STORE_URL = ""; // 예: "https://smartstore.naver.com/hanchae"
+   스토어 주소는 https://smartstore.naver.com/hanok_hanchae 입니다.
+   상품 등록이 끝나면 아래 빈 따옴표 안에 그 주소를 넣으세요.
+   그것만으로 '스토어 준비 중' 버튼이 '스토어에서 구매' 링크로 바뀝니다.
+   지금은 상품이 없어 일부러 비워 둡니다. 빈 매장으로 보내면 신뢰를 잃습니다. */
+const STORE_URL = ""; // 열리면 여기에: "https://smartstore.naver.com/hanok_hanchae"
 if (STORE_URL) {
   // 주소가 생기면 비활성 버튼을 진짜 링크로 바꿔 끼웁니다
   const b = document.getElementById('storeBtn');
