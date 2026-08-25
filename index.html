@@ -395,6 +395,13 @@ section { padding: 140px 0; }
   scrollbar-width: thin; scrollbar-color: var(--line) transparent;
 }
 .rail > figure { flex: 0 0 clamp(240px, 26vw, 330px); scroll-snap-align: start; }
+/* [학습] 사진이 네 장뿐이라 넓은 화면에서는 거의 다 들어옵니다. 그런데도 캐러셀로 두면
+   스크롤할 거리가 200px도 안 돼서 버튼이 두 지점만 오가고, 마지막 사진은 계속 잘립니다.
+   넓을 때는 네 칸으로 펼쳐 다 보여주고, 좁을 때만 넘기는 방식으로 갑니다. */
+@media (min-width: 1000px) {
+  .rail { display: grid; grid-template-columns: repeat(4, 1fr); overflow-x: visible; padding-bottom: 0; }
+  .rail > figure { flex: none; }
+}
 .rail figure img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
 .rail figcaption { margin-top: 14px; font-size: 14px; color: var(--ink-soft); }
 .rail figcaption .cap-date {
@@ -403,6 +410,9 @@ section { padding: 140px 0; }
 }
 .rail figcaption b { display: block; color: var(--ink); font-weight: 600; }
 .rail-foot { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+/* [학습] display를 직접 지정하면 hidden 속성이 무시됩니다. 브라우저 기본값보다
+   내가 쓴 규칙이 우선하기 때문입니다. 그래서 한 줄을 따로 적어줘야 합니다. */
+.rail-foot[hidden] { display: none; }
 /* [학습] 손가락으로 누르는 버튼은 최소 44x44px. 그보다 작으면 자꾸 빗나갑니다. */
 .rail-foot button {
   background: none; border: 1px solid var(--line); border-radius: 0;
@@ -1203,18 +1213,33 @@ if (inqBtn && inqPanel) {
 const rail = document.getElementById('rail');
 if (rail) {
   const step = () => rail.querySelector('figure').getBoundingClientRect().width + 20;
+  /* [학습] 예전 코드는 '한 걸음 갔을 때 끝을 넘으면 처음으로'였습니다.
+     사진이 화면에 거의 다 들어와 남은 거리(188px)가 한 걸음(350px)보다 짧으면,
+     첫 클릭부터 끝을 넘겨 버려서 다음 버튼은 제자리, 이전 버튼은 오른쪽으로 갔습니다.
+     지금은 끝에 '닿았을 때만' 반대편으로 넘기고, 그전에는 남은 만큼만 움직입니다. */
   const go = (dir) => {
     const max = rail.scrollWidth - rail.clientWidth;
-    let next = rail.scrollLeft + dir * step();
-    if (next > max - 4) next = 0;              // 끝에 닿으면 처음으로
-    if (next < 0) next = max;
+    const at = rail.scrollLeft;
+    let next;
+    if (dir > 0) next = at >= max - 4 ? 0 : Math.min(at + step(), max);
+    else         next = at <= 4 ? max : Math.max(at - step(), 0);
     rail.scrollTo({ left: next, behavior: reduce ? 'auto' : 'smooth' });
   };
   document.getElementById('railNext').addEventListener('click', () => go(1));
   document.getElementById('railPrev').addEventListener('click', () => go(-1));
 
-  if (!reduce) {
-    let timer = setInterval(() => go(1), 4500);
+  /* 넘길 거리가 없으면 버튼도 자동 넘김도 필요 없습니다. 화면 크기가 바뀌면 다시 판단합니다. */
+  const foot = document.querySelector('.rail-foot');
+  const sync = () => {
+    const scrollable = rail.scrollWidth > rail.clientWidth + 8;
+    foot.hidden = !scrollable;
+    return scrollable;
+  };
+  sync();
+  window.addEventListener('resize', sync);
+
+  if (!reduce && sync()) {
+    let timer = setInterval(() => { if (sync()) go(1); }, 4500);
     const stop = () => { clearInterval(timer); timer = null; };
     ['pointerenter', 'pointerdown', 'focusin'].forEach(ev => rail.addEventListener(ev, stop));
     document.querySelectorAll('.rail-foot button').forEach(b => b.addEventListener('click', stop));
