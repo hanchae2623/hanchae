@@ -125,7 +125,7 @@ body {
   font-family: var(--font-body);
   background: var(--paper); color: var(--ink);
   line-height: 1.8; -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+  overflow-x: clip;
   /* [학습] 한글 줄바꿈의 핵심 한 줄입니다.
      이게 없으면 브라우저가 '국가유산으 / 로'처럼 단어 한가운데를 잘라 버립니다.
      keep-all은 띄어쓰기에서만 줄을 바꾸게 합니다. 영문에는 영향이 없습니다. */
@@ -255,7 +255,7 @@ section { padding: 140px 0; }
    히어로 텍스트 요소는 최대 4개(아이브로우 / 제목 / 설명 / 버튼)입니다.
    ============================================================ */
 .hero {
-  position: relative; min-height: 100dvh;   /* [학습] h-screen 대신 dvh. 모바일 주소창 때문에 */
+  position: relative; min-height: 100vh; min-height: 100dvh;   /* [학습] h-screen 대신 dvh. 모바일 주소창 때문에 */
   display: flex; align-items: flex-end;
   padding: 0 0 96px; background: var(--d-bg); color: var(--d-text);
   overflow: hidden;
@@ -338,7 +338,7 @@ section { padding: 140px 0; }
    ============================================================ */
 .stack { padding: 0; }
 .panel {
-  position: sticky; top: 0; min-height: 100dvh;
+  position: sticky; top: 0; min-height: 100vh; min-height: 100dvh;
   display: flex; align-items: center;
   border-top: 1px solid var(--line);
 }
@@ -352,7 +352,7 @@ section { padding: 140px 0; }
 @media (max-width: 820px) {
   .panel .wrap { grid-template-columns: 1fr; gap: 22px; }
   /* 화면 세 개를 꽉 채우면 휴대폰에서 스크롤이 너무 길어집니다 */
-  .panel { min-height: 72dvh; }
+  .panel { min-height: 72vh; min-height: 72dvh; }
 }
 .step-kr { font-family: var(--font-title); font-size: clamp(38px, 6vw, 78px); line-height: 1.1; }
 .step-body { font-size: 18px; color: var(--ink-soft); max-width: 26em; }
