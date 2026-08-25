@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>페이지를 찾을 수 없습니다 | 한채 HANCHAE</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/images/favicon-32.png" sizes="32x32">
+  <link rel="apple-touch-icon" href="/images/favicon-180.png">
+  <meta name="theme-color" content="#141412">
+  <link rel="preconnect" href="https://hangeul.pstatic.net" crossorigin>
+  <style>
+    @font-face {
+      font-family: 'MaruBuri Web'; font-weight: 600; font-display: swap;
+      src: url('https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.woff2') format('woff2');
+    }
+    :root {
+      --paper: #F0EDE6; --ink: #141412; --ink-soft: #66625A; --line: #D6D0C3;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #141412; --ink: #F0EDE6; --ink-soft: #A8A399; --line: #33312C; }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      min-height: 100dvh; display: grid; place-items: center; padding: 32px;
+      background: var(--paper); color: var(--ink);
+      font-family: Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
+      word-break: keep-all; text-wrap: pretty;
+    }
+    main { max-width: 30em; text-align: center; }
+    h1 {
+      font-family: 'MaruBuri Web', 'Nanum Myeongjo', serif; font-weight: 600;
+      font-size: clamp(26px, 5vw, 40px); line-height: 1.35;
+    }
+    p { margin-top: 20px; color: var(--ink-soft); font-size: 16px; line-height: 1.8; }
+    a.home {
+      display: inline-block; margin-top: 36px; padding: 14px 28px;
+      background: var(--ink); color: var(--paper); text-decoration: none; font-size: 15px;
+      transition: opacity .2s;
+    }
+    a.home:hover { opacity: .85; }
+    a.home:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>찾으시는 자리가 비어 있습니다</h1>
+    <p>주소가 바뀌었거나 아직 만들지 않은 페이지입니다.
+      처음 화면으로 돌아가서 다시 찾아보세요.</p>
+    <a class="home" href="/">한채 첫 화면으로</a>
+  </main>
+</body>
+</html>

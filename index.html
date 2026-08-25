@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+<!--
+  ============================================================
+  한채 HANCHAE 랜딩페이지 v2
+  ============================================================
+  기준 문서
+    · 한채_랜딩페이지레퍼런스및가이드_260807_김성민.pdf
+    · 한채_랜딩페이지_v2_제작계획.md
+
+  v1 대비 바뀐 것
+    · 팔레트 전면 교체: 웜 아이보리 + 호박색 → 먹빛 + 한지 아이보리 + 단청 뇌록
+    · 섹션 10개, 레이아웃 패밀리 10개 (같은 구성 반복 0회)
+    · 신뢰 구축(팀 / 현장조사 / 국가유산)에 가장 큰 비중
+    · 모서리 전부 각짐, 아이브로우 5개 → 3개
+    · 사진 미확보 구간은 가짜 이미지 대신 빈 슬롯으로 명시
+
+  사진이 들어올 자리는 전부 TODO 주석으로 표시해 뒀습니다.
+  파일 맨 아래 "사진 교체 안내" 주석에 목록이 정리돼 있습니다.
+-->
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+
+  <title>한채 HANCHAE | 보는 국가유산에서, 경험하는 국가유산으로</title>
+  <meta name="description" content="한채는 한국의 건축과 유물을 손으로 조립하는 오브제로 옮깁니다. 고증하고, 오늘의 언어로 다시 짓고, 일상에서 경험하게 만듭니다.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="한채 HANCHAE - 보는 국가유산에서, 경험하는 국가유산으로">
+  <meta property="og:description" content="한국의 건축과 유물을 손으로 짓는 오브제로.">
+  <meta property="og:image" content="__SITE_URL__/images/og-hanchae-1200.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="불을 켠 볕채 한칸집과 세칸집">
+  <meta property="og:url" content="__SITE_URL__/">
+  <meta property="og:site_name" content="한채 HANCHAE">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="__SITE_URL__/">
+  <meta property="og:locale" content="ko_KR">
+
+  <!-- [학습] LCP(첫 화면 로딩) 최적화. 히어로 이미지를 미리 받아두라고 브라우저에 알립니다. -->
+  <link rel="preload" as="image" href="images/hero-lit-web.jpg" fetchpriority="high">
+
+  <!-- 국문 제목: 마루부리 / 국문 본문: Pretendard / 영문 병기: Outfit
+       [학습] 운영 단계에서는 폰트를 서버에 직접 올려두는 게 더 빠릅니다. 지금은 CDN. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://hangeul.pstatic.net" crossorigin>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500&display=swap">
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="images/favicon-512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="images/favicon-180.png">
+  <meta name="theme-color" content="#141412">
+
+<style>
+/* ============================================================
+   0. 마루부리 (제목용)
+   [학습] 네이버가 배포하는 마루부리는 굵기마다 패밀리 이름이 다릅니다.
+   'MaruBuri'는 Regular 하나뿐이라, font-weight: 600을 주면 브라우저가
+   Regular를 억지로 부풀려 그립니다(가짜 볼드). 부리 모양이 뭉개지는 원인입니다.
+   그래서 실제 SemiBold 파일을 600에 직접 물려 둡니다.
+   ============================================================ */
+@font-face {
+  font-family: 'MaruBuri Web'; font-weight: 400; font-display: swap;
+  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Regular.woff2) format('woff2');
+}
+@font-face {
+  font-family: 'MaruBuri Web'; font-weight: 600; font-display: swap;
+  src: url(https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-SemiBold.woff2) format('woff2');
+}
+
+/* ============================================================
+   1. 토큰
+   [학습] 색을 여기 한 곳에 모읍니다. v1의 호박색을 단청 뇌록으로 바꾼 것도
+   이 블록 몇 줄을 고친 결과입니다.
+   ============================================================ */
+:root {
+  --paper:      #F0EDE6;   /* 한지 아이보리 - 페이지 기본 */
+  --paper-2:    #E5E0D5;   /* 한 톤 아래 - 구획, 빈 슬롯 */
+  --ink:        #141412;   /* 먹빛 (순검정 아님. 순검정은 깊이가 죽습니다) */
+  --ink-soft:   #66625A;   /* 보조 텍스트 - 아이보리 대비 5.2:1 */
+  --line:       #D6D0C3;
+
+  /* [학습] 강조를 색 하나 더 늘려서 만들지 않습니다. 먹빛 면에 아이보리 글자를 얹는
+     방식으로 통일했습니다. 현판이나 탁본처럼 읽히고, 색이 둘뿐이라 브랜드가 흐려지지 않습니다.
+     var()는 쓰는 시점에 값을 찾기 때문에, 아래 세 줄은 다크 모드에서 저절로 뒤집힙니다. */
+  --accent:     var(--ink);     /* 강조 면 */
+  --accent-lit: var(--d-text);  /* 어두운 화면 위의 강조 */
+  --on-accent:  var(--paper);   /* 강조 면 위의 글자 */
+
+  /* 어두운 면(히어로) 전용 */
+  --d-bg:       #141412;
+  --d-text:     #F0EDE6;
+  --d-dim:      #CFC9BE;   /* 강조되지 않은 제목 (아이보리를 한 단계 물린 값) */
+  --d-soft:     #A8A399;   /* 먹빛 대비 7.4:1 */
+
+  --font-title: 'MaruBuri Web', 'Nanum Myeongjo', serif;
+  --font-body:  'Pretendard Variable', Pretendard, -apple-system, sans-serif;
+  --font-latin: 'Outfit', var(--font-body);
+
+  --max: 1240px;
+  --pad: 24px;
+}
+
+/* [학습] 다크 모드. 사용자 기기 설정을 따라 토큰만 갈아끼웁니다.
+   구조와 여백은 그대로고 색만 바뀝니다. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:    #141412;
+    --paper-2:  #1F1E1A;
+    --ink:      #F0EDE6;
+    --ink-soft: #A8A399;
+    --line:     #33312B;
+  }
+}
+
+/* ============================================================
+   2. 리셋
+   ============================================================ */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+body {
+  font-family: var(--font-body);
+  background: var(--paper); color: var(--ink);
+  line-height: 1.8; -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  /* [학습] 한글 줄바꿈의 핵심 한 줄입니다.
+     이게 없으면 브라우저가 '국가유산으 / 로'처럼 단어 한가운데를 잘라 버립니다.
+     keep-all은 띄어쓰기에서만 줄을 바꾸게 합니다. 영문에는 영향이 없습니다. */
+  word-break: keep-all;
+  overflow-wrap: break-word;   /* 아주 긴 URL 같은 예외만 강제로 자름 */
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+/* [학습] text-wrap: pretty는 마지막 줄에 한 단어만 덩그러니 남는 것(고아 줄)을 막아줍니다. */
+h1, h2, h3 { font-family: var(--font-title); font-weight: 600; line-height: 1.3; text-wrap: pretty; }
+
+.wrap { width: 100%; max-width: var(--max); margin: 0 auto; padding: 0 var(--pad); }
+
+/* [학습] VISUAL_DENSITY 3 = 아트 갤러리 밀도. 섹션 사이가 넓어야
+   "한 화면에 하나의 내용"이라는 가이드 요구가 성립합니다. */
+section { padding: 140px 0; }
+@media (max-width: 768px) { section { padding: 80px 0; } }
+
+.title {
+  font-size: clamp(30px, 4.6vw, 52px); letter-spacing: -.015em;
+}
+.title .en {
+  display: block; font-family: var(--font-latin); font-weight: 300;
+  font-size: clamp(13px, 1.3vw, 17px); letter-spacing: .06em;
+  color: var(--ink-soft); margin-top: 14px; line-height: 1.5;
+}
+.lead { color: var(--ink-soft); font-size: 17px; max-width: 38em; margin-top: 24px; }
+
+/* ============================================================
+   3. 접근성 기본
+   [학습] 키보드로 Tab을 눌러 이동할 때 지금 어디에 있는지 보이지 않으면
+   마우스를 못 쓰는 사람은 길을 잃습니다. 눈에 보이는 초점 표시는 선택이 아닙니다.
+   ============================================================ */
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+.on-dark :focus-visible, .panel:nth-child(3) :focus-visible, .cell.tinted :focus-visible { outline-color: var(--on-accent); }
+
+/* 화면에는 숨어 있다가 Tab을 처음 누르면 나타나는 본문 바로가기 */
+.skip {
+  position: absolute; left: var(--pad); top: -64px; z-index: 100;
+  background: var(--ink); color: var(--paper); padding: 12px 18px;
+  font-size: 14px; font-weight: 600; transition: top .2s ease;
+}
+.skip:focus { top: 12px; }
+
+/* [학습] 아이콘을 ☰ ✕ 같은 문자로 대신하면 기기마다 모양이 제멋대로 바뀌고
+   보조기기가 엉뚱하게 읽습니다. 같은 굵기로 직접 그린 SVG를 씁니다. */
+.ico { width: 22px; height: 22px; display: block; fill: none; stroke: currentColor; stroke-width: 1.6; }
+
+
+/* ============================================================
+   4. 헤더
+   [학습] 데스크톱에서 내비게이션은 반드시 한 줄. 높이 80px 이하.
+   ============================================================ */
+.header {
+  position: sticky; top: 0; z-index: 90; height: 72px;
+  background: color-mix(in srgb, var(--paper) 88%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+}
+.header .wrap { display: flex; align-items: center; justify-content: space-between; height: 100%; }
+
+.brandmark { display: flex; align-items: center; gap: 11px; }
+.brandmark img { height: 24px; width: auto; }
+.brandmark .kr {
+  font-family: var(--font-title); font-size: 24px; font-weight: 600;
+  letter-spacing: .06em; line-height: 1;
+}
+.brandmark .en {
+  font-family: var(--font-latin); font-size: 10px; font-weight: 500;
+  letter-spacing: .28em; color: var(--ink-soft);
+  padding-left: 11px; border-left: 1px solid var(--line); line-height: 1;
+}
+@media (prefers-color-scheme: dark) { .brandmark img { filter: invert(1) brightness(1.6); } }
+@media (max-width: 480px) { .brandmark .en { display: none; } }
+
+.nav { display: flex; gap: 34px; font-size: 15px; }
+.nav a { color: var(--ink-soft); transition: color .2s; }
+.nav a:hover { color: var(--accent); }
+.navbtn { display: none; background: none; border: 0; font-size: 20px; cursor: pointer; color: var(--ink); line-height: 1; }
+
+@media (max-width: 820px) {
+  .navbtn { display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin-right: -11px; }
+  /* [학습] max-height를 움직이면 브라우저가 매 프레임 레이아웃을 다시 계산합니다.
+     transform과 opacity만 움직이면 GPU가 처리해서 훨씬 부드럽습니다. */
+  .nav {
+    position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; gap: 0;
+    background: var(--paper); border-bottom: 1px solid var(--line);
+    opacity: 0; visibility: hidden; transform: translateY(-10px);
+    transition: opacity .22s ease, transform .22s ease, visibility 0s .22s;
+  }
+  .nav.open {
+    opacity: 1; visibility: visible; transform: none;
+    transition: opacity .22s ease, transform .22s ease, visibility 0s;
+  }
+  .nav a { padding: 15px var(--pad); border-top: 1px solid var(--line); }
+}
+
+/* ============================================================
+   5. 버튼
+   [학습] 모서리는 전부 각짐(radius 0)으로 통일했습니다. 한옥 결구와
+   비석의 직각이 이 브랜드의 형태 언어라서, 둥근 요소를 섞지 않습니다.
+   ============================================================ */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 15px 30px; border: 1px solid transparent; border-radius: 0;
+  font-family: var(--font-body); font-size: 15px; font-weight: 600;
+  white-space: nowrap;                    /* CTA 글자가 두 줄로 접히지 않게 */
+  cursor: pointer; transition: background .2s, color .2s, transform .12s;
+}
+.btn:active { transform: translateY(-1px); }
+.btn-fill { background: var(--accent); color: var(--on-accent); }
+.btn-fill:hover { background: color-mix(in srgb, var(--accent) 86%, var(--paper)); }
+.btn-line { border-color: currentColor; }
+.btn[disabled] { opacity: .55; cursor: not-allowed; pointer-events: none; }
+.btn-line:hover { background: var(--ink); color: var(--paper); }
+
+/* 어두운 면 위의 버튼 */
+.on-dark .btn-fill { background: var(--accent-lit); color: var(--d-bg); }
+.on-dark .btn-fill:hover { background: color-mix(in srgb, var(--accent-lit) 85%, #fff); }
+.on-dark .btn-line { border-color: var(--d-text); color: var(--d-text); }
+.on-dark .btn-line:hover { background: var(--d-text); color: var(--d-bg); }
+
+/* ============================================================
+   6. 히어로 - 전면 이미지 위 선언형
+   [학습] 페이지 테마는 아이보리로 잠갔고, 어두운 화면은 히어로 딱 한 번만
+   씁니다. 중간에 또 뒤집으면 다른 사이트에 들어온 것처럼 느껴집니다.
+   히어로 텍스트 요소는 최대 4개(아이브로우 / 제목 / 설명 / 버튼)입니다.
+   ============================================================ */
+.hero {
+  position: relative; min-height: 100dvh;   /* [학습] h-screen 대신 dvh. 모바일 주소창 때문에 */
+  display: flex; align-items: flex-end;
+  padding: 0 0 96px; background: var(--d-bg); color: var(--d-text);
+  overflow: hidden;
+}
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+/* 사진 위 글자를 읽히게 하는 어둡기 막(scrim). 없으면 대비가 깨집니다. */
+.hero-bg::after {
+  content: ""; position: absolute; inset: 0;
+  /* [학습] 막을 좌우로 깔면 글이 놓인 왼쪽이 통째로 어두워져 제품이 묻힙니다.
+     글은 아래에 있으니 막도 아래에서 위로 옅어지게 세로로 세웁니다.
+     제품이 있는 가운데 띠는 34%만 덮여 창의 불빛이 그대로 보입니다. */
+  background: linear-gradient(180deg,
+    rgba(20,20,18,.52) 0%,
+    rgba(20,20,18,.34) 22%,
+    rgba(20,20,18,.34) 48%,
+    rgba(20,20,18,.72) 72%,
+    rgba(20,20,18,.95) 100%);
+}
+/* 세로 화면에서는 제품이 위쪽에 걸리므로 중간을 더 열어 둡니다 */
+.hero-bg img { object-position: center 45%; }
+@media (max-width: 820px) {
+  .hero-bg::after {
+    background: linear-gradient(180deg,
+      rgba(20,20,18,.42) 0%, rgba(20,20,18,.30) 26%,
+      rgba(20,20,18,.66) 55%, rgba(20,20,18,.96) 100%);
+  }
+  .hero-bg img { object-position: center 38%; }
+}
+.hero .wrap { position: relative; z-index: 1; }
+/* [학습] 어두운 화면에서는 제목 전체를 한 단계 물린 아이보리로 두고,
+   강조할 단어만 완전한 아이보리로 올립니다. 색을 더하지 않고 밝기만으로 강조합니다. */
+.hero h1 { font-size: clamp(30px, 6vw, 68px); letter-spacing: -.02em; color: var(--d-dim); }
+.hero h1 em { font-style: normal; color: var(--accent-lit); }  /* 완전한 아이보리 */
+.hero .hero-en {
+  font-family: var(--font-latin); font-weight: 300;
+  font-size: clamp(13px, 1.4vw, 17px); letter-spacing: .08em;
+  color: var(--d-soft); margin-top: 18px;
+}
+.hero p.sub { color: var(--d-soft); font-size: 17px; max-width: 26em; margin-top: 26px; }
+.hero .acts { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 38px; }
+
+/* [학습] 모든 섹션에 똑같은 페이드인을 거는 건 연출이 아니라 습관입니다.
+   이 페이지의 움직임은 두 군데뿐입니다. 하나는 여기(첫 도착), 하나는 고증-재해석-경험이
+   쌓이는 구간. JS 없이 CSS만으로 돌고, 애니메이션이 없는 환경에서도 글은 그대로 보입니다. */
+@keyframes heroIn { from { opacity: 0; transform: translateY(22px); } }
+.hero h1, .hero .hero-en, .hero .sub, .hero .acts {
+  animation: heroIn .95s cubic-bezier(.16, 1, .3, 1) backwards;
+}
+.hero h1       { animation-delay: .05s; }
+.hero .hero-en { animation-delay: .20s; }
+.hero .sub     { animation-delay: .32s; }
+.hero .acts    { animation-delay: .44s; }
+
+/* ============================================================
+   7. 브랜드 선언 - 이미지 없이 타이포만
+   ============================================================ */
+.declare .wrap { max-width: 1100px; }
+.declare .big {
+  font-family: var(--font-title); font-weight: 600;
+  /* [학습] 가장 긴 줄이 한 줄에 들어가는 크기로 맞춥니다.
+     글자를 키우고 싶으면 문장을 줄이거나 담는 폭을 넓혀야 합니다. */
+  font-size: clamp(24px, 3.2vw, 36px); line-height: 1.55; letter-spacing: -.015em;
+}
+/* 강조 = 먹빛 판에 얹은 아이보리. 줄이 바뀌어도 판이 따라 끊기도록 clone */
+.declare .big span {
+  background: var(--accent); color: var(--on-accent);
+  padding: 0 .18em;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.declare .after {
+  margin-top: 44px; padding-top: 34px; border-top: 1px solid var(--line);
+  color: var(--ink-soft); font-size: 17px; max-width: 38em;
+}
+
+/* ============================================================
+   8. 개발 프로세스 - 스티키 스택
+   [학습] JS 없이 CSS position:sticky만으로 만듭니다. 스크롤하면 다음 판이
+   앞 판 위로 덮으며 올라옵니다. 세 단계가 순서대로 쌓인다는 걸 보여주는 게 목적입니다.
+   ============================================================ */
+.stack { padding: 0; }
+.panel {
+  position: sticky; top: 0; min-height: 100dvh;
+  display: flex; align-items: center;
+  border-top: 1px solid var(--line);
+}
+.panel:nth-child(1) { background: var(--paper); }
+.panel:nth-child(2) { background: var(--paper-2); }
+.panel:nth-child(3) { background: var(--accent); color: var(--on-accent); }
+/* [학습] 뇌록 면 위의 본문은 투명도를 82%까지 낮추면 대비가 4.1:1로 기준(4.5)에 미달합니다.
+   96%로 올려 4.9:1을 확보했습니다. "살짝 흐리게"가 접근성을 깨는 대표적인 경우입니다. */
+.panel:nth-child(3) .step-body { color: color-mix(in srgb, var(--on-accent) 96%, transparent); }
+.panel .wrap { display: grid; grid-template-columns: 1fr 1.3fr; gap: 60px; align-items: center; }
+@media (max-width: 820px) {
+  .panel .wrap { grid-template-columns: 1fr; gap: 22px; }
+  /* 화면 세 개를 꽉 채우면 휴대폰에서 스크롤이 너무 길어집니다 */
+  .panel { min-height: 72dvh; }
+}
+.step-kr { font-family: var(--font-title); font-size: clamp(38px, 6vw, 78px); line-height: 1.1; }
+.step-body { font-size: 18px; color: var(--ink-soft); max-width: 26em; }
+
+/* ============================================================
+   9. 빈 사진 슬롯
+   [학습] 사진이 아직 없을 때 가짜 이미지를 만들어 채우지 않습니다.
+   자리를 비워두되 의도적으로 보이게 처리하고, 무엇이 들어올지 적어둡니다.
+   ============================================================ */
+
+/* ============================================================
+   10. 팀 - 비대칭 2열, 행마다 어긋나게
+   ============================================================ */
+/* [학습] 빈 사진 칸 세 개보다 이름이 또렷한 편이 신뢰에 낫습니다.
+   사진이 오면 .member-photo 한 줄만 넣으면 왼쪽 열에 붙습니다. */
+.team-grid { margin-top: 56px; display: grid; gap: 4px; }
+.member {
+  display: grid; grid-template-columns: minmax(0, 26%) 1fr; gap: 40px;
+  align-items: start; padding: 30px 0;
+}
+.member + .member { border-top: 1px solid var(--line); }
+.member h3 { font-family: var(--font-title); font-size: clamp(22px, 2.6vw, 30px); }
+.member .role { font-size: 14px; font-weight: 600; color: var(--ink-soft); margin-top: 6px; }
+.member .what { font-size: 16px; color: var(--ink-soft); max-width: 30em; padding-top: 6px; }
+.member-photo { grid-row: span 2; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; margin-bottom: 16px; }
+@media (max-width: 720px) {
+  .member { grid-template-columns: 1fr; gap: 12px; }
+  .member .what { padding-top: 0; }
+}
+
+/* ============================================================
+   11. 현장조사 - 자동 슬라이드
+   [학습] 가이드가 요구한 방식입니다. 이미지를 세로로 길게 나열하는 대신
+   한 자리에서 넘깁니다. 손을 대면 멈추고, 동작 줄이기 설정에서도 멈춥니다.
+   ============================================================ */
+.field { background: var(--paper-2); }
+.rail {
+  display: flex; gap: 20px; margin-top: 56px; padding-bottom: 22px;
+  overflow-x: auto; scroll-snap-type: x mandatory;
+  scrollbar-width: thin; scrollbar-color: var(--line) transparent;
+}
+.rail > figure { flex: 0 0 clamp(240px, 26vw, 330px); scroll-snap-align: start; }
+.rail figure img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+.rail figcaption { margin-top: 14px; font-size: 14px; color: var(--ink-soft); }
+.rail figcaption .cap-date {
+  display: block; margin-top: 6px;
+  font-family: var(--font-latin); font-size: 12px; letter-spacing: .1em; color: var(--ink-soft);
+}
+.rail figcaption b { display: block; color: var(--ink); font-weight: 600; }
+.rail-foot { display: flex; align-items: center; gap: 16px; margin-top: 8px; }
+/* [학습] 손가락으로 누르는 버튼은 최소 44x44px. 그보다 작으면 자꾸 빗나갑니다. */
+.rail-foot button {
+  background: none; border: 1px solid var(--line); border-radius: 0;
+  width: 44px; height: 44px; cursor: pointer; color: var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  transition: border-color .2s, color .2s;
+}
+.rail-foot button:hover { border-color: var(--accent); color: var(--accent); }
+
+/* 기록 - 해온 일과 지금 하는 일
+   [학습] 실적을 따로 떼어 숫자 카드 세 장으로 늘어놓는 배치는 어느 사이트에나 있습니다.
+   '직접 보고 그린다'는 과정 바로 밑에 붙여야 자랑이 아니라 근거로 읽힙니다.
+   행마다 밑줄을 긋지 않고 여백과 왼쪽 열의 리듬으로 구분합니다. */
+.log { margin-top: 72px; border-top: 1px solid var(--line); padding-top: 12px; }
+.log-row { display: grid; grid-template-columns: 116px 1fr; gap: 20px; padding: 16px 0; align-items: baseline; }
+@media (max-width: 640px) { .log-row { grid-template-columns: 1fr; gap: 6px; } }
+.when {
+  font-family: var(--font-latin); font-size: 12px; letter-spacing: .1em;
+  color: var(--ink-soft); white-space: nowrap;
+}
+.when.now {
+  font-family: var(--font-body); letter-spacing: 0; font-weight: 600;
+  background: var(--accent); color: var(--on-accent); padding: 3px 10px;
+  justify-self: start;
+}
+.log-row p { font-size: 16px; color: var(--ink); }
+.log-row .pct {
+  font-family: var(--font-title); font-size: 1.5em; font-weight: 600;
+  letter-spacing: -.01em; line-height: 1;
+}
+
+.grants { margin-top: 56px; }
+.grants h3 { font-size: 19px; }
+.grants ul { list-style: none; margin-top: 20px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 32px; }
+@media (max-width: 640px) { .grants ul { grid-template-columns: 1fr; } }
+.grants li { font-size: 15px; color: var(--ink-soft); }
+.grants li b { display: block; color: var(--ink); font-weight: 600; font-size: 14px; letter-spacing: .01em; }
+
+/* ============================================================
+   12. 국가유산 콘텐츠 - 벤토
+   [학습] 벤토는 칸 수가 콘텐츠 수와 정확히 같아야 합니다. 빈 칸을 남기면
+   레이아웃을 잘못 짠 겁니다. 여기는 3개 콘텐츠에 3칸입니다.
+   ============================================================ */
+.bento { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 60px; }
+.bento > *:first-child, .bento > .cell.tinted { grid-column: 1 / -1; }
+@media (max-width: 820px) { .bento { grid-template-columns: 1fr; } }
+.cell { padding: 44px 40px; border: 1px solid var(--line); }
+.cell h3 { font-size: 23px; }
+.cell p { font-size: 15px; color: var(--ink-soft); margin-top: 12px; }
+.cell.tinted { background: var(--accent); color: var(--on-accent); border-color: transparent; }
+.cell.tinted p { color: color-mix(in srgb, var(--on-accent) 96%, transparent); }
+.cell.quiet { background: var(--paper-2); }
+.hanja {
+  font-family: var(--font-title); font-size: clamp(34px, 5vw, 58px);
+  letter-spacing: .1em; line-height: 1.4; color: inherit; margin-bottom: 18px;
+}
+
+/* 문창살 5종 */
+.lattice { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 18px; margin-top: 34px; }
+.lat { text-align: center; }
+.lat svg { width: 100%; max-width: 108px; height: auto; margin: 0 auto 14px; display: block; }
+/* [학습] 마우스를 올리면 창호지에 볕이 드는 것처럼 바탕의 그늘이 걷힙니다. */
+.lat .glow { fill: var(--ink); opacity: .07; transition: opacity .4s; }
+.lat:hover .glow { opacity: 0; }
+.lat .bar { fill: var(--ink); }
+.lat h4 { font-family: var(--font-title); font-size: 18px; font-weight: 600; }
+.lat .mean {
+  display: inline-block; background: var(--accent); color: var(--on-accent);
+  font-size: 12px; letter-spacing: .04em; padding: 3px 9px; margin: 6px 0 2px;
+}
+.lat .use { font-size: 12px; color: var(--ink-soft); margin-top: 6px; }
+
+/* ============================================================
+   13. 볕채 - 전폭 이미지 + 아래 해설
+   ============================================================ */
+.bleed { width: 100%; margin-top: 60px; }
+.bleed img { width: 100%; aspect-ratio: 21 / 9; object-fit: cover; }
+@media (max-width: 820px) { .bleed img { aspect-ratio: 4 / 3; } }
+.readout { display: grid; grid-template-columns: 1.25fr 1fr; gap: 60px; margin-top: 54px; }
+@media (max-width: 820px) { .readout { grid-template-columns: 1fr; gap: 34px; } }
+.readout p { color: var(--ink-soft); font-size: 16px; }
+.readout p + p { margin-top: 14px; }
+/* [학습] 스펙을 10행짜리 표로 만들고 행마다 밑줄을 긋는 건 가장 게으른 배치입니다.
+   두 덩어리로 묶고 구분선은 덩어리 사이에만 씁니다. */
+.chunk + .chunk { margin-top: 26px; padding-top: 26px; border-top: 1px solid var(--line); }
+/* [학습] 대문자 라틴 라벨은 한글 페이지에서 겉돕니다.
+   한글로 바꾸면 자간과 서체도 본문 쪽으로 되돌려야 글자가 흩어지지 않습니다. */
+.chunk dt { font-size: 12px; letter-spacing: .04em; font-weight: 600; color: var(--ink-soft); }
+.chunk dd { font-size: 16px; margin-top: 8px; }
+/* 가격. 찾는 사람에게는 보이고, 브랜드 톤은 흔들지 않는 크기 */
+.price { margin-top: 26px; font-size: 13.5px; color: var(--ink-soft); line-height: 1.7; }
+.more-coming { margin-top: 22px; font-size: 15px; color: var(--ink-soft); }
+
+/* ============================================================
+   자주 묻는 질문
+   [학습] details와 summary는 브라우저에 원래 있는 접이식 목록입니다.
+   자바스크립트 없이 열리고 닫히며, 키보드와 보조기기가 이미 이해합니다.
+   직접 만들면 그 동작을 전부 다시 구현해야 합니다.
+   ============================================================ */
+.faq { background: var(--paper-2); }
+.faq-list { margin-top: 48px; border-top: 1px solid var(--line); }
+.faq-list details { border-bottom: 1px solid var(--line); }
+.faq-list summary {
+  list-style: none; cursor: pointer; padding: 22px 44px 22px 0; position: relative;
+  font-size: 17px; font-weight: 600;
+}
+.faq-list summary::-webkit-details-marker { display: none; }
+/* 열림 표시는 문자가 아니라 선 두 개로 그립니다 */
+.faq-list summary::before,
+.faq-list summary::after {
+  content: ""; position: absolute; right: 6px; top: 50%;
+  width: 15px; height: 1.6px; background: var(--ink); transition: transform .25s ease;
+}
+.faq-list summary::after { transform: rotate(90deg); }
+.faq-list details[open] summary::after { transform: rotate(0deg); }
+.faq-list summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.faq-list p { padding: 0 0 24px; font-size: 16px; color: var(--ink-soft); max-width: 60em; }
+.faq-more { margin-top: 34px; font-size: 15px; color: var(--ink-soft); }
+@media (prefers-reduced-motion: reduce) {
+  .faq-list summary::before, .faq-list summary::after { transition: none; }
+}
+
+/* ============================================================
+   14. 하마비 - 세로 스택, 좁은 폭
+   ============================================================ */
+.next-series { background: var(--paper-2); }
+.next-series .wrap { max-width: 760px; text-align: center; }
+/* [학습] 세로 3:4 사진이라 폭을 묶지 않으면 화면을 다 잡아먹습니다.
+   가운데 정렬 섹션이라 사진도 가운데에 세워 현판처럼 읽히게 했습니다. */
+.hamabi-shot { max-width: 380px; margin: 0 auto 44px; }
+.hamabi-shot img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+@media (max-width: 560px) { .hamabi-shot { max-width: 74%; } }
+.pill {
+  display: inline-block; padding: 6px 14px; border: 1px solid var(--line);
+  font-size: 12px; letter-spacing: .04em; color: var(--ink-soft); margin-bottom: 22px;
+}
+.next-series p { color: var(--ink-soft); font-size: 17px; margin-top: 22px; }
+
+/* ============================================================
+   15. 단체 문의 - 좌측 정렬 단일 띠
+   ============================================================ */
+.b2b { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 100px 0; }
+.b2b h2 { font-size: clamp(24px, 3.2vw, 36px); max-width: 15em; }
+.b2b p { color: var(--ink-soft); font-size: 16px; max-width: 34em; margin-top: 20px; }
+.b2b .btn { margin-top: 34px; }
+
+/* [학습] 폼을 직접 만들면 개인정보를 받게 되어 처리방침이 필요해집니다.
+   메일 주소를 보여주고 무엇을 적어 보낼지 알려주는 것만으로 충분합니다. */
+.inquiry { margin-top: 26px; max-width: 44em; }
+.inquiry[hidden] { display: none; }
+.inquiry:not([hidden]) { animation: inquiryIn .4s cubic-bezier(.16, 1, .3, 1); }
+@keyframes inquiryIn { from { opacity: 0; transform: translateY(10px); } }
+
+.mail-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.mail-addr {
+  display: inline-block; background: var(--accent); color: var(--on-accent);
+  font-family: var(--font-latin); font-size: clamp(16px, 2.1vw, 21px); letter-spacing: .01em;
+  padding: 10px 16px;
+}
+.mail-addr:hover { background: color-mix(in srgb, var(--accent) 86%, var(--paper)); }
+.copy-btn {
+  background: none; border: 1px solid var(--line); border-radius: 0;
+  padding: 10px 14px; font-family: var(--font-body); font-size: 14px;
+  color: var(--ink-soft); cursor: pointer; transition: border-color .2s, color .2s;
+}
+.copy-btn:hover { border-color: var(--ink); color: var(--ink); }
+.copy-btn[data-done] { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+
+.inquiry-what { margin-top: 26px; }
+.inquiry-what > p { font-size: 15px; color: var(--ink-soft); max-width: 42em; }
+.inquiry-what ul { list-style: none; margin-top: 14px; display: grid; gap: 8px; }
+.inquiry-what li { font-size: 15px; color: var(--ink); padding-left: 16px; position: relative; }
+/* 점 대신 짧은 선. 목록 기호를 문자로 찍지 않습니다 */
+.inquiry-what li::before {
+  content: ""; position: absolute; left: 0; top: .72em;
+  width: 8px; height: 1px; background: var(--ink-soft);
+}
+
+/* ============================================================
+   16. 구매 - 이 페이지에서 유일하게 중앙 정렬
+   ============================================================ */
+.buy { text-align: center; }
+.buy .lead { margin-left: auto; margin-right: auto; }
+.buy .acts { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 38px; }
+.buy .note { margin-top: 26px; font-size: 14px; color: var(--ink-soft); }
+
+/* ============================================================
+   17. 푸터
+   [학습] 통신판매를 시작하면 상호 / 대표자 / 사업자등록번호 /
+   통신판매업 신고번호 / 주소 / 연락처가 법적 필수 표기입니다.
+   ============================================================ */
+.footer { padding: 60px 0 80px; border-top: 1px solid var(--line); font-size: 13px; color: var(--ink-soft); }
+.footer-top { display: flex; justify-content: space-between; gap: 26px; flex-wrap: wrap; margin-bottom: 34px; }
+.footer-links { display: flex; gap: 22px; }
+.footer-links a:hover { color: var(--accent); }
+.biz { line-height: 2.1; }
+.biz .todo { text-decoration: underline; text-decoration-style: dotted; text-underline-offset: 3px; }
+
+
+@media (prefers-reduced-motion: reduce) {
+  /* [학습] 동작 줄이기를 켠 사용자에게는 애니메이션을 전부 끕니다. 선택이 아니라 필수입니다. */
+  html { scroll-behavior: auto; }
+  .hero h1, .hero .hero-en, .hero .sub, .hero .acts { animation: none; filter: none; }
+  .panel { position: static; min-height: 0; padding: 80px 0; }
+  .rail { scroll-behavior: auto; }
+}
+</style>
+</head>
+
+<body>
+
+<!-- 문창살 5종 원본 경로. 실물 도안을 벡터로 옮긴 것이라 확대해도 깨지지 않고,
+     색은 CSS에서 정합니다(fill: currentColor 대신 .bar 클래스 사용). -->
+<svg width="0" height="0" aria-hidden="true" style="position:absolute">
+  <defs>
+    <g id="lat-wanja"><path d="M0.0 64.0L0.0 0.0L64.0 0.0L128.0 0.0L128.0 64.0L128.0 128.0L64.0 128.0L0.0 128.0L0.0 64.0Z M30.9 110.5L30.9 97.1L17.4 97.1L4.0 97.0L4.0 97.2L4.0 97.4L4.0 110.4L4.0 123.5L4.1 123.8L4.3 124.0L17.6 123.9L30.9 123.9L30.9 110.5Z M61.9 95.0L61.9 66.1L32.9 66.1L4.0 66.0L4.0 66.2L4.0 66.4L4.0 79.4L4.0 92.5L4.1 92.8L4.3 93.0L19.4 93.0L34.4 93.0L34.7 93.3L35.0 93.7L35.0 108.6L35.0 123.5L35.1 123.8L35.3 124.0L48.6 123.9L61.9 123.9L61.9 95.0Z M93.0 108.5L93.1 93.1L108.5 93.0L123.9 92.9L123.9 79.5L123.9 66.1L94.9 66.1L66.0 66.0L66.0 66.2L66.0 66.4L66.0 95.0L66.0 123.5L66.1 123.8L66.3 124.0L79.6 123.9L92.9 123.9L93.0 108.5Z M123.9 110.5L123.9 97.1L110.4 97.1L97.0 97.0L97.0 97.2L97.0 97.4L97.0 110.4L97.0 123.5L97.1 123.8L97.3 124.0L110.6 123.9L123.9 123.9L123.9 110.5Z M61.9 33.0L61.9 4.1L48.4 4.1L35.0 4.0L35.0 4.3L35.0 4.6L35.0 19.4L35.0 34.2L34.6 34.6L34.2 35.0L19.1 35.0L4.0 35.0L4.0 35.2L4.0 35.4L4.0 48.4L4.0 61.5L4.1 61.8L4.3 62.0L33.1 61.9L61.9 61.9L61.9 33.0Z M123.9 48.6L124.0 35.4L123.8 35.2L123.6 35.0L108.6 35.0L93.5 35.0L93.3 34.7L93.0 34.3L92.9 19.2L92.9 4.1L79.4 4.1L66.0 4.0L66.0 4.2L66.0 4.4L66.0 33.0L66.0 61.5L66.1 61.8L66.3 62.0L95.1 61.9L123.9 61.9L123.9 48.6Z M30.9 17.5L30.9 4.1L17.4 4.1L4.0 4.0L4.0 4.2L4.0 4.4L4.0 17.4L4.0 30.5L4.1 30.8L4.3 31.0L17.6 30.9L30.9 30.9L30.9 17.5Z M123.9 17.5L123.9 4.1L110.4 4.1L97.0 4.0L97.0 4.2L97.0 4.4L97.0 17.4L97.0 30.5L97.1 30.8L97.3 31.0L110.6 30.9L123.9 30.9L123.9 17.5Z"/></g>
+    <g id="lat-guigap"><path d="M0.0 64.0L0.0 0.0L64.0 0.0L128.0 0.0L128.0 64.0L128.0 128.0L64.0 128.0L0.0 128.0L0.0 64.0Z M27.9 123.8L28.0 123.6L22.9 118.5L17.7 113.4L17.5 113.4L17.3 113.4L12.1 118.5L7.0 123.6L7.1 123.8L7.3 124.0L17.5 124.0L27.7 124.0L27.9 123.8Z M61.9 110.5L61.9 97.1L47.6 97.1L33.4 97.1L26.8 103.8L20.1 110.5L26.9 117.3L33.6 124.0L47.8 123.9L61.9 123.9L61.9 110.5Z M101.1 117.2L107.9 110.5L101.1 103.8L94.4 97.0L80.2 97.0L66.0 97.0L66.0 97.2L66.0 97.4L66.0 110.4L66.0 123.5L66.1 123.8L66.3 124.0L80.3 124.0L94.4 124.0L101.1 117.2Z M120.9 123.8L121.0 123.6L115.9 118.5L110.7 113.4L110.5 113.4L110.3 113.4L105.1 118.5L100.0 123.6L100.1 123.8L100.3 124.0L110.5 124.0L120.7 124.0L120.9 123.8Z M9.7 115.7L14.8 110.5L9.7 105.3L4.6 100.1L4.3 100.0L4.0 100.0L4.0 100.2L4.0 100.5L4.0 110.5L4.0 120.5L4.0 120.8L4.0 121.0L4.3 121.0L4.6 120.9L9.7 115.7Z M123.9 110.5L123.9 100.1L123.6 100.1L123.4 100.1L118.3 105.3L113.2 110.5L118.3 115.7L123.4 120.9L123.6 120.9L123.9 120.8L123.9 110.5Z M24.3 101.1L31.0 94.4L30.9 80.2L30.9 66.1L17.4 66.1L4.0 66.0L4.0 66.3L4.0 66.6L4.0 80.5L4.0 94.4L10.7 101.1L17.4 107.7L17.5 107.7L17.6 107.8L24.3 101.1Z M117.3 101.1L124.0 94.4L123.9 80.2L123.9 66.1L110.4 66.1L97.0 66.0L97.0 66.3L97.0 66.6L97.0 80.5L97.0 94.4L103.7 101.1L110.4 107.7L110.5 107.7L110.6 107.8L117.3 101.1Z M61.9 79.5L61.9 66.1L48.4 66.1L35.0 66.0L35.0 66.2L35.0 66.4L35.0 79.4L35.0 92.5L35.1 92.8L35.3 93.0L48.6 92.9L61.9 92.9L61.9 79.5Z M92.9 79.5L92.9 66.1L79.4 66.1L66.0 66.0L66.0 66.2L66.0 66.4L66.0 79.4L66.0 92.5L66.1 92.8L66.3 93.0L79.6 92.9L92.9 92.9L92.9 79.5Z M30.9 47.8L31.0 33.6L24.3 26.9L17.5 20.1L10.8 26.9L4.0 33.6L4.0 47.6L4.0 61.5L4.1 61.7L4.3 62.0L17.6 61.9L30.9 61.9L30.9 47.8Z M61.9 48.5L61.9 35.1L48.4 35.1L35.0 35.0L35.0 35.2L35.0 35.4L35.0 48.4L35.0 61.5L35.1 61.8L35.3 62.0L48.6 61.9L61.9 61.9L61.9 48.5Z M92.9 48.5L92.9 35.1L79.4 35.1L66.0 35.0L66.0 35.2L66.0 35.4L66.0 48.4L66.0 61.5L66.1 61.8L66.3 62.0L79.6 61.9L92.9 61.9L92.9 48.5Z M123.9 47.8L124.0 33.6L117.3 26.9L110.5 20.1L103.8 26.9L97.0 33.6L97.0 47.6L97.0 61.5L97.1 61.7L97.3 62.0L110.6 61.9L123.9 61.9L123.9 47.8Z M61.9 17.5L61.9 4.1L47.6 4.1L33.4 4.1L26.8 10.8L20.1 17.5L26.9 24.3L33.6 31.0L47.8 30.9L61.9 30.9L61.9 17.5Z M101.1 24.2L107.9 17.5L101.1 10.7L94.4 4.0L80.2 4.0L66.0 4.0L66.0 4.2L66.0 4.4L66.0 17.4L66.0 30.5L66.1 30.8L66.3 31.0L80.3 31.0L94.4 31.0L101.1 24.2Z M9.7 22.7L14.8 17.5L9.7 12.3L4.6 7.1L4.3 7.0L4.0 7.0L4.0 7.2L4.0 7.5L4.0 17.5L4.0 27.5L4.0 27.8L4.0 28.0L4.3 28.0L4.6 27.9L9.7 22.7Z M123.9 17.5L123.9 7.1L123.6 7.1L123.4 7.1L118.3 12.3L113.2 17.5L118.3 22.7L123.4 27.9L123.6 27.9L123.9 27.8L123.9 17.5Z M22.9 9.5L28.0 4.4L28.0 4.2L28.0 4.0L27.8 4.0L27.5 4.0L17.5 4.0L7.5 4.0L7.2 4.0L7.0 4.0L7.0 4.2L7.0 4.4L12.2 9.6L17.4 14.7L17.5 14.7L17.7 14.6L22.9 9.5Z M115.9 9.5L121.0 4.4L121.0 4.2L121.0 4.0L120.8 4.0L120.5 4.0L110.5 4.0L100.5 4.0L100.2 4.0L100.0 4.0L100.0 4.2L100.0 4.4L105.2 9.6L110.4 14.7L110.5 14.7L110.7 14.6L115.9 9.5Z"/></g>
+    <g id="lat-aja"><path d="M0.0 64.0L0.0 0.0L64.0 0.0L128.0 0.0L128.0 64.0L128.0 128.0L64.0 128.0L0.0 128.0L0.0 64.0Z M24.9 101.4L25.0 78.9L24.7 78.6L24.4 78.2L14.4 78.2L4.3 78.2L4.1 78.5L4.0 78.7L4.0 101.1L4.0 123.5L4.1 123.8L4.3 124.0L14.6 123.9L24.9 123.9L24.9 101.4Z M49.4 123.8L49.8 123.7L49.8 113.6L49.8 103.6L49.4 103.3L49.1 103.0L39.2 103.0L29.3 103.0L29.0 103.3L28.8 103.6L28.8 113.6L28.8 123.7L28.9 123.8L29.1 124.0L39.0 124.0L49.0 124.0L49.4 123.8Z M74.4 123.8L74.5 123.5L74.5 113.6L74.5 103.7L74.2 103.3L73.9 103.0L64.0 103.0L54.1 103.0L53.8 103.3L53.5 103.7L53.5 113.6L53.5 123.5L53.6 123.8L53.8 124.0L64.0 124.0L74.2 124.0L74.4 123.8Z M99.2 113.8L99.3 103.7L99.0 103.3L98.7 103.0L88.8 103.0L78.8 103.0L78.5 103.3L78.2 103.6L78.2 113.7L78.2 123.7L78.6 123.8L78.9 124.0L89.0 123.9L99.1 123.9L99.2 113.8Z M123.9 101.6L124.0 79.4L123.9 78.8L123.7 78.2L113.7 78.2L103.6 78.2L103.3 78.5L103.0 78.8L103.0 101.3L103.0 123.7L103.2 123.8L103.3 124.0L113.6 123.9L123.9 123.9L123.9 101.6Z M99.0 98.9L99.2 98.6L99.2 64.0L99.2 29.3L99.0 29.0L98.7 28.8L64.0 28.8L29.4 28.8L29.1 29.0L28.8 29.3L28.8 64.0L28.8 98.7L29.1 99.0L29.4 99.2L64.0 99.2L98.7 99.2L99.0 98.9Z M24.7 74.2L25.0 73.9L25.0 64.0L25.0 54.1L24.7 53.8L24.3 53.5L14.4 53.5L4.4 53.5L4.2 53.7L4.0 53.9L4.0 64.0L4.0 74.1L4.3 74.4L4.7 74.6L14.5 74.6L24.3 74.5L24.7 74.2Z M123.5 74.5L124.0 74.2L124.0 64.0L124.0 53.8L123.7 53.6L123.5 53.5L113.6 53.5L103.7 53.5L103.3 53.8L103.0 54.1L103.0 64.0L103.0 73.9L103.3 74.2L103.7 74.5L113.3 74.6L122.9 74.6L123.0 74.7L123.0 74.8L123.5 74.5Z M24.7 49.4L25.0 49.1L24.9 26.6L24.9 4.1L14.4 4.1L4.0 4.0L4.0 4.3L4.0 4.6L4.0 27.0L4.0 49.3L4.1 49.5L4.3 49.8L14.4 49.8L24.4 49.8L24.7 49.4Z M123.9 49.2L124.0 48.6L123.9 26.4L123.9 4.1L113.5 4.1L103.1 4.1L103.1 26.6L103.0 49.1L103.3 49.4L103.6 49.8L113.7 49.8L123.7 49.8L123.9 49.2Z M49.5 24.7L49.8 24.3L49.7 14.2L49.6 4.1L39.2 4.1L28.9 4.1L28.8 14.2L28.7 24.3L29.0 24.7L29.3 25.0L39.2 25.0L49.2 25.0L49.5 24.7Z M74.2 24.7L74.5 24.3L74.5 14.4L74.5 4.5L74.4 4.2L74.2 4.0L64.0 4.0L53.8 4.0L53.6 4.2L53.5 4.5L53.5 14.4L53.5 24.3L53.8 24.7L54.1 25.0L64.0 25.0L73.9 25.0L74.2 24.7Z M99.0 24.7L99.3 24.3L99.2 14.2L99.1 4.1L88.8 4.1L78.4 4.1L78.3 14.2L78.2 24.3L78.5 24.7L78.8 25.0L88.8 25.0L98.7 25.0L99.0 24.7Z"/></g>
+    <g id="lat-kkot"><path d="M0.8 127.1C-0.5 125.6 -0.4 2.1 0.9 0.8C2.4 -0.5 125.9 -0.4 127.2 0.9C128.5 2.4 128.4 125.9 127.1 127.2C125.6 128.5 2.1 128.4 0.8 127.1Z M16.9 123.4C16.8 122.4 16.4 122.2 13.8 122.0C10.1 121.7 7.4 120.4 5.6 118.2C3.7 115.8 3.5 116.0 3.5 120.2C3.5 124.8 3.0 124.5 10.6 124.5C17.0 124.5 17.1 124.5 16.9 123.4Z M30.9 123.5C31.9 123.0 33.2 122.5 33.8 122.5C34.3 122.5 35.6 123.0 36.6 123.5C41.1 125.9 47.4 124.6 48.2 121.1C48.7 119.1 44.3 118.5 41.0 120.2C38.2 121.6 37.0 120.8 37.0 117.5C37.0 116.7 36.3 114.9 35.4 113.4L33.8 110.9L32.9 112.1C31.4 114.0 30.0 117.4 30.0 119.0C30.0 120.9 29.0 121.3 26.9 120.3C24.1 119.0 19.0 119.0 19.0 120.3C19.0 121.1 20.4 123.5 21.2 124.1C22.4 124.9 29.0 124.5 30.9 123.5Z M79.0 123.9C79.0 122.7 77.9 122.0 76.1 122.0C71.9 122.0 68.6 120.2 66.4 116.6C65.1 114.4 64.4 114.6 62.4 117.4C60.3 120.3 57.8 121.6 53.9 121.9C51.1 122.1 49.4 123.2 50.4 124.2C51.0 124.9 79.0 124.5 79.0 123.9Z M92.8 123.5C93.8 123.0 95.2 122.5 95.7 122.5C96.3 122.5 97.6 123.0 98.6 123.5C100.5 124.5 107.1 124.9 108.2 124.1C109.2 123.4 110.6 120.4 110.2 120.0C109.2 119.0 104.3 119.3 101.6 120.6C100.1 121.4 99.0 120.3 99.0 118.0C99.0 116.5 97.2 112.6 95.7 111.0C95.0 110.3 92.0 116.4 92.0 118.4C92.0 120.6 90.9 121.3 88.8 120.3C86.3 119.1 81.0 119.2 81.0 120.4C81.0 124.3 87.7 126.1 92.8 123.5Z M124.4 121.4C124.6 118.2 124.1 117.8 122.3 119.6C120.9 120.9 117.8 122.0 115.2 122.0C114.0 122.0 112.9 122.3 112.5 122.7C111.3 124.2 112.5 124.5 118.4 124.4L124.2 124.2L124.4 121.4Z M17.0 118.5C17.0 114.8 8.0 109.7 6.3 112.4C5.8 113.2 8.3 117.2 9.8 118.1C11.4 119.0 17.0 119.3 17.0 118.5Z M57.2 118.2C61.3 116.5 62.3 112.0 58.6 112.0C55.3 112.0 50.0 116.1 50.0 118.7C50.0 119.3 55.5 119.0 57.2 118.2Z M79.0 118.6C79.0 114.8 69.4 109.6 68.2 112.7C67.7 113.9 70.8 117.9 72.6 118.4C74.7 119.0 79.0 119.1 79.0 118.6Z M119.5 117.9C121.4 116.6 123.2 113.7 122.8 112.7C121.6 109.7 112.0 115.1 112.0 118.7C112.0 119.6 118.0 118.9 119.5 117.9Z M27.6 115.6C27.9 114.9 28.7 113.4 29.4 112.5L30.5 110.7L29.3 108.0C27.7 104.5 27.6 100.8 29.0 98.2C30.7 95.2 30.5 94.7 26.7 94.3C22.7 93.9 20.8 92.7 18.6 89.4L17.0 87.0L14.1 87.0C12.5 87.0 10.8 86.9 10.2 86.7C9.4 86.5 9.1 86.8 8.6 88.6C8.2 89.7 7.5 91.3 7.0 92.1C6.0 93.4 6.0 93.4 7.0 95.1C9.2 99.0 9.3 102.9 7.1 106.4C6.0 108.1 6.6 108.8 9.6 109.1C13.4 109.4 15.5 110.6 17.7 113.7L19.7 116.5L22.7 116.6C24.4 116.7 26.0 116.9 26.4 116.9C26.7 117.0 27.3 116.4 27.6 115.6Z M48.8 115.1C52.5 110.2 54.5 109.0 58.9 109.0C61.4 109.0 61.6 108.2 60.0 105.5C58.4 103.1 58.6 98.8 60.2 95.7L61.5 93.3L60.5 91.8C59.9 90.9 59.1 89.4 58.7 88.3C58.1 87.1 57.6 86.5 57.1 86.7C56.7 86.9 55.0 87.0 53.2 87.0C50.6 87.0 50.0 87.2 50.0 87.8C50.0 89.2 44.7 94.0 43.2 94.1C42.4 94.1 41.5 94.2 41.2 94.2C41.0 94.3 40.2 94.4 39.5 94.4C37.0 94.6 36.8 95.1 38.3 97.8C39.9 100.8 39.8 105.0 38.0 108.3L36.9 110.4L37.9 111.8C38.4 112.6 39.2 114.1 39.5 115.1L40.2 116.9L44.0 116.7C47.3 116.4 47.9 116.3 48.8 115.1Z M89.7 115.2C89.9 114.4 90.6 113.2 91.1 112.4C92.3 110.7 92.2 110.0 90.9 107.7C89.3 105.0 89.3 100.4 90.9 98.2C93.0 95.3 92.6 94.8 87.8 94.2C84.9 93.9 80.8 90.9 79.2 87.9C78.6 86.9 71.0 86.3 71.0 87.3C71.0 87.9 70.0 89.9 68.4 92.4C67.9 93.3 68.0 93.7 69.0 95.6C70.7 98.6 70.8 103.5 69.1 105.9C67.4 108.2 67.9 109.0 71.1 109.0C74.5 109.0 77.7 110.9 79.8 114.2L81.2 116.5L84.5 116.6C89.2 116.9 89.1 116.9 89.7 115.2Z M107.8 116.3C109.6 116.4 109.9 116.2 111.7 113.7C114.0 110.5 116.8 109.0 120.5 109.0C123.4 109.0 123.7 108.4 121.9 105.8C120.3 103.6 120.3 99.0 121.9 95.9L123.1 93.6L121.4 90.1C120.0 87.1 119.6 86.6 118.8 86.8C118.2 86.9 116.5 87.0 115.0 87.0C112.4 87.0 112.2 87.1 111.3 88.6C109.0 92.4 104.8 95.0 101.7 94.4C99.2 93.9 98.6 95.1 100.0 97.6C101.7 100.6 101.7 104.9 100.0 107.8L98.9 109.9L100.6 113.5L102.2 117.1L104.0 116.7C105.0 116.5 106.7 116.3 107.8 116.3Z M65.8 111.2C66.1 110.5 65.2 109.0 64.5 109.0C63.9 109.0 63.4 110.9 63.7 111.5C64.2 112.3 65.5 112.1 65.8 111.2Z M35.6 106.5C37.3 103.2 37.3 102.4 35.8 99.5C32.9 93.7 29.3 101.1 32.1 107.1C33.5 110.0 33.8 109.9 35.6 106.5Z M97.2 106.8C99.7 101.7 97.2 94.5 94.2 98.3C92.3 100.7 92.1 103.4 93.8 106.7C95.5 110.1 95.6 110.1 97.2 106.8Z M65.9 105.5C68.2 103.1 68.1 99.3 65.7 95.6C64.7 94.1 64.3 94.2 63.1 96.6C60.6 101.6 62.9 108.8 65.9 105.5Z M5.8 102.1C6.2 100.5 5.0 96.5 4.2 96.5C3.4 96.5 3.1 104.0 3.9 104.7C4.3 105.1 5.4 103.6 5.8 102.1Z M34.2 94.2C35.1 93.9 35.3 92.2 34.5 91.8C33.5 91.1 31.9 92.5 32.5 93.5C33.1 94.6 33.1 94.6 34.2 94.2Z M97.0 92.7C97.0 91.7 95.4 91.4 94.5 92.3C93.8 93.0 93.8 93.1 94.7 93.8C95.7 94.5 97.0 94.0 97.0 92.7Z M67.3 88.8C67.7 88.0 68.0 86.5 68.0 85.5C68.0 82.8 69.0 82.1 71.3 83.2C72.9 83.9 79.5 84.4 79.5 83.7C79.5 82.6 77.2 78.9 75.9 77.7C73.2 75.5 73.2 75.1 75.4 73.2C77.8 71.2 79.8 67.6 79.0 66.8C78.2 66.0 73.4 66.2 71.4 67.2C69.1 68.3 68.0 67.7 68.0 65.2C68.0 61.7 65.0 57.1 63.8 58.8C62.3 60.7 61.0 64.0 61.0 65.8C61.0 67.9 60.1 68.4 58.2 67.4C49.9 63.2 47.4 68.7 55.2 74.2L56.2 75.0L54.2 76.9C52.4 78.4 49.5 82.7 49.5 83.7C49.5 84.4 56.6 84.0 58.0 83.3C60.0 82.2 61.0 82.7 61.0 84.7C61.0 86.7 62.0 89.2 63.5 91.2L64.7 92.6L65.6 91.4C66.1 90.8 66.8 89.6 67.3 88.8Z M29.5 91.0C32.0 89.7 27.7 85.2 23.5 84.7C19.7 84.2 19.3 84.6 20.5 86.9C22.5 90.8 26.5 92.6 29.5 91.0Z M43.3 90.7C45.0 89.9 48.0 86.2 48.0 85.0C48.0 84.1 41.9 84.7 40.5 85.6C37.8 87.5 36.4 90.8 38.1 91.1C40.4 91.6 41.6 91.5 43.3 90.7Z M91.5 91.0C92.4 90.4 90.6 86.6 88.9 85.6C87.5 84.7 82.2 84.2 81.8 84.9C81.0 86.2 84.6 90.8 86.7 91.2C88.7 91.5 90.7 91.5 91.5 91.0Z M106.3 90.2C108.1 89.0 110.2 85.0 109.2 84.7C105.5 83.2 99.0 86.9 99.0 90.5C99.0 91.7 104.3 91.5 106.3 90.2Z M5.2 89.3C5.6 88.6 6.0 87.6 6.0 87.1C6.0 83.4 7.3 82.0 9.7 83.3C11.1 84.0 17.0 84.3 17.6 83.7C18.2 83.2 14.6 77.8 13.2 77.0C11.4 76.0 11.2 75.2 12.6 74.1C14.9 72.3 18.0 68.0 18.0 66.7C18.0 66.1 10.6 66.6 9.7 67.2C9.2 67.6 8.4 68.0 7.9 68.0C7.0 68.0 6.8 67.6 6.2 64.5C5.1 59.0 3.5 58.8 3.5 64.2C3.5 69.0 3.8 70.0 5.0 70.0C9.1 70.0 9.5 77.7 5.5 80.2L3.5 81.5L3.5 86.0C3.5 90.7 3.8 91.3 5.2 89.3Z M38.0 83.9C39.5 82.4 42.3 81.5 45.4 81.5C47.3 81.5 47.5 81.3 48.3 79.8C48.7 78.8 49.6 77.5 50.3 76.7C51.8 75.2 51.8 75.5 50.2 73.7C49.6 72.9 48.7 71.5 48.2 70.6C47.5 69.2 47.2 69.0 45.4 69.0C41.1 69.0 36.3 66.2 35.3 63.1C34.7 61.3 33.2 61.8 31.5 64.2C29.4 67.3 26.2 69.0 22.2 69.0C20.5 69.0 20.1 69.2 19.5 70.4C19.1 71.1 18.1 72.6 17.3 73.6L15.9 75.4L17.4 77.0C18.2 77.8 19.2 79.2 19.5 80.0C20.0 81.3 20.4 81.4 23.4 81.7C27.8 82.2 29.1 82.9 31.6 86.3L33.7 89.2L35.2 87.2C36.0 86.1 37.3 84.7 38.0 83.9Z M98.1 86.0C100.3 83.1 102.1 82.1 106.0 81.7C108.9 81.3 109.2 81.1 110.1 79.5C110.7 78.5 111.6 77.2 112.2 76.6C113.0 75.6 113.1 75.3 112.6 74.6C112.3 74.1 111.3 72.7 110.4 71.4C109.0 69.2 108.7 69.0 106.8 69.0C102.8 69.0 99.0 66.8 97.2 63.4C96.2 61.4 95.0 61.7 93.0 64.4C90.9 67.2 88.3 68.6 84.5 69.0C82.1 69.2 81.7 69.4 80.9 71.0C80.3 72.0 79.4 73.3 78.8 73.9C78.1 74.7 77.9 75.2 78.3 75.7C78.5 76.0 79.5 77.5 80.5 78.9L82.3 81.6L85.4 81.8C89.5 82.0 92.0 83.7 94.1 87.5C95.2 89.4 95.7 89.2 98.1 86.0Z M124.5 84.5C124.5 81.2 124.4 81.0 122.8 79.4C120.2 76.9 120.2 73.4 122.8 70.9C124.4 69.4 124.5 69.1 124.5 65.8C124.5 61.9 123.5 61.3 123.0 64.9C122.6 67.8 122.0 68.3 119.9 67.3C117.5 66.2 114.5 65.8 112.8 66.5L111.4 67.0L112.8 69.5C113.5 70.9 114.9 72.6 115.8 73.3C118.0 74.9 117.9 75.5 115.5 77.4C113.9 78.7 111.5 82.5 111.5 83.7C111.5 84.3 118.0 84.0 119.7 83.3C122.0 82.3 123.0 83.2 123.0 86.0C123.0 87.4 123.2 88.0 123.8 88.0C124.3 88.0 124.5 87.3 124.5 84.5Z M60.8 79.2C56.1 74.5 61.2 67.4 67.3 70.3C70.9 72.0 71.4 76.7 68.2 79.5C65.7 81.7 63.1 81.6 60.8 79.2Z M66.8 76.8C68.0 75.0 67.4 73.2 65.5 72.8C63.4 72.3 62.0 73.2 62.0 75.1C62.0 77.9 65.3 79.1 66.8 76.8Z M5.5 76.3C6.0 75.4 6.0 74.9 5.4 74.1C4.3 72.3 3.5 72.8 3.5 75.2C3.5 77.8 4.4 78.3 5.5 76.3Z M26.5 65.1C28.2 64.3 30.8 60.3 30.2 59.4C28.5 56.7 19.5 61.7 19.5 65.3C19.5 66.3 24.3 66.2 26.5 65.1Z M48.0 65.5C48.0 61.6 38.4 56.5 37.2 59.7C36.8 60.7 39.3 64.4 40.9 65.2C42.5 66.0 48.0 66.2 48.0 65.5Z M88.5 64.9C92.5 62.2 93.0 59.0 89.5 59.0C86.0 59.0 81.0 62.9 81.0 65.7C81.0 66.6 87.0 65.9 88.5 64.9Z M110.0 65.2C110.0 64.8 109.8 64.5 109.6 64.5C109.4 64.5 108.7 63.6 108.0 62.4C105.1 57.7 97.1 57.4 99.9 62.1C101.8 65.4 110.0 68.0 110.0 65.2Z M14.6 63.3C16.9 63.3 17.1 63.1 18.9 60.8C21.7 57.1 23.0 56.3 26.8 56.1C30.5 55.9 30.7 55.5 29.0 52.2C27.6 49.5 27.7 45.6 29.2 42.8L30.5 40.6L28.7 37.1L27.0 33.6L23.4 33.9C20.4 34.1 19.6 34.3 19.0 35.2C15.9 39.5 13.7 41.0 9.9 41.2C6.7 41.4 6.0 42.0 7.1 44.1C9.3 48.3 9.3 51.3 7.0 55.3C5.7 57.6 8.9 64.3 11.0 63.7C11.7 63.5 13.3 63.3 14.6 63.3Z M58.7 62.2C58.9 61.4 59.6 60.2 60.1 59.4C61.3 57.7 61.2 56.9 60.0 54.4C58.5 51.6 58.5 47.4 60.0 44.8C61.6 41.9 61.3 41.4 57.7 41.2C54.0 41.1 51.8 39.8 49.5 36.4C47.9 34.0 47.8 34.0 45.0 34.0C43.5 34.0 41.7 33.9 41.1 33.7C40.3 33.5 40.0 33.6 40.0 34.2C40.0 34.9 38.4 38.1 37.4 39.4C37.1 39.8 37.3 40.8 38.3 42.7C40.0 46.2 39.9 50.4 38.1 52.9C36.5 55.0 37.3 56.0 40.3 56.0C43.7 56.0 46.4 57.6 48.7 60.8C50.5 63.5 50.7 63.6 52.4 63.4C53.4 63.2 54.8 63.3 55.5 63.5C57.5 64.1 58.1 63.9 58.7 62.2Z M76.4 63.3C78.5 63.2 78.8 63.0 80.6 60.7C83.1 57.5 85.9 56.0 89.4 56.0C92.4 56.0 92.7 55.4 90.9 52.6C89.4 50.1 89.4 45.6 90.9 42.9C92.2 40.5 92.3 39.8 91.1 38.1C90.6 37.3 89.9 36.0 89.5 35.1C89.1 34.0 88.6 33.5 88.1 33.7C87.7 33.9 86.0 34.0 84.3 34.0C81.4 34.0 81.2 34.1 80.4 35.4C78.1 39.3 75.6 41.0 71.8 41.2C67.7 41.5 67.2 42.0 69.0 44.6C70.8 47.0 70.9 50.9 69.3 54.2C67.7 57.4 67.8 57.2 68.9 58.9C69.4 59.7 70.2 61.1 70.5 62.1C71.2 63.9 71.3 64.0 72.7 63.7C73.6 63.5 75.2 63.3 76.4 63.3Z M121.4 60.5L123.1 57.1L121.9 54.9C120.3 51.9 120.3 46.9 121.9 44.7C123.2 42.8 123.3 41.5 122.1 41.4C121.6 41.4 120.8 41.3 120.2 41.3C119.7 41.2 118.5 41.1 117.6 41.1C116.0 41.0 111.4 37.2 110.2 34.9C109.9 34.3 108.8 34.1 105.9 33.9L102.0 33.7L101.3 35.5C100.9 36.4 100.1 37.9 99.7 38.6C98.8 39.9 98.8 40.1 99.9 42.3C101.8 46.1 101.9 48.9 100.3 52.2C98.6 55.5 98.8 56.0 102.1 56.0C105.4 56.0 108.3 57.7 110.7 61.0C112.3 63.2 112.7 63.5 113.9 63.3C114.6 63.1 116.0 63.2 117.0 63.5C118.0 63.7 119.0 63.9 119.2 63.9C119.5 63.9 120.5 62.4 121.4 60.5Z M34.8 57.5C34.8 55.9 33.2 55.5 32.8 57.0C32.3 58.3 32.9 59.1 33.9 58.9C34.4 58.8 34.8 58.3 34.8 57.5Z M96.2 58.7C97.2 58.3 97.2 57.3 96.2 56.5C95.1 55.6 93.7 57.2 94.6 58.3C95.2 59.1 95.2 59.1 96.2 58.7Z M65.8 54.8C69.1 49.6 66.4 40.7 63.0 45.6C61.4 47.7 61.4 50.7 63.0 53.7C64.3 56.3 64.7 56.5 65.8 54.8Z M5.2 52.2C6.2 49.9 6.2 48.8 5.2 47.0C4.0 44.5 3.5 45.3 3.5 49.8C3.5 54.4 4.0 55.1 5.2 52.2Z M34.7 52.7C37.3 50.1 37.4 46.9 34.9 42.7C33.6 40.5 33.5 40.5 32.1 43.4C29.9 48.1 31.9 55.5 34.7 52.7Z M97.0 52.0C98.8 49.5 98.8 47.0 97.3 43.8C95.6 40.4 95.5 40.4 94.0 43.3C91.3 48.6 94.0 56.2 97.0 52.0Z M65.8 39.8C65.8 38.3 63.8 38.4 63.6 39.9C63.4 40.9 63.6 41.1 64.6 40.9C65.4 40.8 65.8 40.4 65.8 39.8Z M36.2 35.8C36.6 34.9 37.1 33.3 37.3 32.1C37.4 31.0 37.8 30.0 38.2 29.9C39.4 29.8 40.8 30.1 41.2 30.5C41.7 31.0 49.0 31.2 49.0 30.8C49.0 29.9 46.4 26.0 44.9 24.5C42.6 22.2 42.6 21.7 44.7 19.9C46.5 18.4 49.2 13.9 48.6 13.3C48.0 12.7 43.3 13.0 41.0 13.9C38.0 14.9 37.0 14.3 37.0 11.5C37.0 9.7 34.5 5.0 33.6 5.0C32.9 5.0 30.4 10.0 30.1 12.2C29.7 14.6 28.8 15.0 26.4 13.8C24.8 13.0 19.2 12.8 18.8 13.5C18.3 14.2 20.6 17.8 22.5 19.6C25.0 21.8 25.0 22.6 22.8 24.4C21.8 25.1 21.0 25.9 21.0 26.2C21.0 26.4 20.4 27.4 19.8 28.4C19.1 29.4 18.7 30.4 18.8 30.6C19.2 31.3 24.8 31.0 26.7 30.2C29.1 29.2 30.0 29.6 30.0 31.5C30.0 33.0 31.2 35.8 32.9 38.4L33.7 39.6L34.6 38.4C35.1 37.8 35.8 36.6 36.2 35.8Z M96.4 38.4C97.8 36.7 99.0 33.8 99.0 32.3C99.0 29.9 102.1 28.6 103.3 30.6C103.6 31.1 109.7 31.2 110.1 30.7C110.7 30.1 108.1 25.8 106.3 24.2C104.1 22.2 104.1 21.9 106.1 20.3C107.6 19.2 110.5 14.7 110.5 13.5C110.5 12.7 105.5 12.9 102.9 13.8C100.1 14.8 99.0 14.3 99.0 11.8C99.0 10.1 96.2 4.8 95.4 5.1C94.5 5.4 92.0 10.5 92.0 12.2C92.0 14.7 91.1 15.2 88.6 14.0C87.3 13.3 85.7 13.0 83.7 13.1C79.9 13.2 79.8 13.3 81.0 15.0C81.5 15.8 82.0 16.6 82.0 16.9C82.0 17.5 85.4 21.0 86.1 21.0C87.2 21.0 86.3 23.0 84.6 24.3C82.8 25.8 80.3 29.8 80.8 30.6C81.2 31.3 86.8 31.0 88.7 30.2C91.0 29.3 92.0 29.9 92.0 32.2C92.0 35.2 95.2 39.8 96.4 38.4Z M12.3 37.7C13.9 36.9 17.0 33.2 17.0 32.0C17.0 29.5 8.9 32.3 7.2 35.4C5.7 38.0 5.7 37.9 7.1 38.1C9.4 38.6 10.6 38.5 12.3 37.7Z M60.2 38.2C62.5 37.3 59.1 32.5 55.9 31.8C50.9 30.8 49.8 31.5 51.7 34.4C53.7 37.6 57.4 39.3 60.2 38.2Z M75.3 37.1C76.5 36.3 79.0 32.6 79.0 31.7C79.0 31.1 73.2 31.6 71.8 32.3C70.4 32.9 68.0 36.2 68.0 37.5C68.0 38.8 73.3 38.5 75.3 37.1Z M122.9 37.8C124.5 36.1 119.8 32.1 115.7 31.6C111.7 31.1 111.5 31.4 113.5 34.4C115.9 38.0 120.9 39.8 122.9 37.8Z M66.8 33.4C68.7 30.3 70.8 29.1 74.8 28.6C78.0 28.3 78.2 28.1 79.1 26.5C79.7 25.5 80.5 24.3 81.0 23.7C82.3 22.4 82.3 22.4 80.2 19.4C79.3 18.0 78.5 16.7 78.5 16.4C78.5 16.2 77.6 16.0 76.4 16.0C72.2 16.0 68.2 13.8 66.7 10.7C65.5 8.2 64.2 8.4 62.0 11.4C59.9 14.2 57.3 15.6 53.6 15.9C52.2 16.0 51.0 16.3 51.0 16.4C51.0 16.6 50.1 17.9 49.0 19.4C47.1 21.8 46.9 24.0 48.5 24.0C48.7 24.0 49.3 25.0 50.0 26.2C51.1 28.3 51.2 28.4 54.2 28.6C58.2 28.9 60.1 30.0 62.3 33.0C64.5 36.1 65.0 36.1 66.8 33.4Z M5.0 33.3C5.0 31.6 8.7 29.2 12.2 28.8C16.2 28.3 17.0 28.0 17.0 27.4C17.0 27.1 17.8 25.8 18.7 24.5L20.5 22.0L19.3 20.6C18.7 19.9 17.8 18.5 17.3 17.6C16.6 16.2 16.2 16.0 14.6 16.0C10.8 16.0 7.1 14.2 5.3 11.4C4.8 10.6 4.2 10.1 3.9 10.3C3.1 10.8 3.4 34.0 4.2 34.0C4.7 34.0 5.0 33.7 5.0 33.3Z M124.5 22.0C124.5 16.5 124.4 12.0 124.2 12.0C124.1 12.0 123.1 12.7 122.1 13.5C120.7 14.6 119.3 15.1 116.5 15.6L112.7 16.2L111.0 19.0C108.7 22.6 108.7 22.4 109.9 23.7C110.5 24.3 111.3 25.5 111.9 26.5C112.8 28.2 113.0 28.3 116.4 28.7C119.2 29.0 120.2 29.4 121.6 30.5C124.5 33.0 124.5 33.0 124.5 22.0Z M31.2 27.0C25.5 23.6 28.1 15.8 34.7 16.7C40.2 17.4 41.1 24.6 35.9 27.3C34.1 28.2 33.1 28.2 31.2 27.0Z M92.9 27.3C89.8 25.5 88.9 20.7 91.3 18.3C94.9 14.7 101.0 16.9 101.0 21.8C101.0 26.4 96.7 29.3 92.9 27.3Z M35.8 23.8C37.5 21.1 35.1 18.4 32.4 19.8C31.4 20.3 31.0 20.9 31.0 21.9C31.0 24.8 34.3 26.1 35.8 23.8Z M97.1 24.3C99.6 22.4 96.7 18.0 94.1 19.8C92.0 21.2 93.1 25.0 95.5 25.0C95.9 25.0 96.6 24.7 97.1 24.3Z M17.0 12.4C17.0 9.2 12.9 6.0 8.8 6.0C5.5 6.0 5.4 6.3 7.4 9.2C9.5 12.2 17.0 14.7 17.0 12.4Z M57.0 12.1C58.9 11.2 61.0 8.4 61.0 6.9C61.0 5.6 55.8 5.6 54.2 6.9C52.8 8.1 50.0 12.3 50.4 12.7C51.0 13.3 55.3 13.0 57.0 12.1Z M79.0 12.5C79.0 9.6 74.5 6.0 70.8 6.0C67.6 6.0 67.6 6.1 69.1 8.9C70.7 12.0 79.0 14.9 79.0 12.5Z M119.0 11.8C123.6 9.4 124.3 6.0 120.2 6.0C116.6 6.0 112.0 9.7 112.0 12.7C112.0 13.5 117.0 12.9 119.0 11.8Z M27.8 9.2C28.0 8.4 28.6 7.1 29.1 6.4C30.9 3.6 30.7 3.5 22.5 3.5C14.9 3.5 13.2 4.0 15.9 5.4C16.4 5.7 17.3 6.8 18.0 8.0C19.1 9.8 19.4 10.0 21.5 10.0C22.7 10.1 24.3 10.3 25.0 10.5C26.8 11.1 27.2 10.9 27.8 9.2Z M45.1 10.1C47.9 9.9 48.1 9.8 49.5 7.7C50.4 6.5 51.5 5.3 52.0 5.0C54.1 3.9 52.3 3.5 45.1 3.5C36.8 3.5 36.6 3.6 38.0 5.5C38.6 6.3 39.0 7.0 39.0 7.1C39.0 8.5 40.7 11.0 41.4 10.7C41.9 10.5 43.6 10.3 45.1 10.1Z M89.5 9.1C89.8 8.1 90.6 6.7 91.1 5.9C92.7 3.6 92.5 3.5 84.2 3.5C80.0 3.5 76.5 3.6 76.5 3.8C76.5 4.0 77.5 5.2 78.8 6.6C80.0 8.0 81.0 9.3 81.0 9.6C81.0 9.8 82.1 10.0 83.4 10.0C84.7 10.1 86.3 10.3 87.0 10.5C87.7 10.7 88.4 10.9 88.5 11.0C88.7 11.0 89.1 10.2 89.5 9.1Z M107.1 10.1C108.7 10.0 110.0 9.7 110.0 9.5C110.0 9.3 111.0 8.1 112.2 6.7C115.3 3.4 115.5 3.5 106.8 3.5C98.5 3.5 98.3 3.6 99.9 5.9C100.4 6.7 101.2 8.1 101.5 9.2C102.1 10.7 102.4 11.0 103.2 10.7C103.8 10.6 105.5 10.3 107.1 10.1Z M65.9 4.6C65.8 4.1 65.3 3.7 64.9 3.6C63.8 3.4 63.1 4.9 64.0 5.5C64.9 6.1 66.1 5.5 65.9 4.6Z"/></g>
+    <g id="lat-sutdae"><path d="M0.0 64.0L0.0 0.0L64.0 0.0L128.0 0.0L128.0 64.0L128.0 128.0L64.0 128.0L0.0 128.0L0.0 64.0Z M24.9 101.4L25.0 78.9L24.7 78.6L24.4 78.2L14.4 78.2L4.3 78.2L4.1 78.5L4.0 78.7L4.0 101.1L4.0 123.5L4.1 123.8L4.3 124.0L14.6 123.9L24.9 123.9L24.9 101.4Z M49.4 123.8L49.8 123.7L49.8 113.6L49.8 103.6L49.4 103.3L49.1 103.0L39.2 103.0L29.3 103.0L29.0 103.3L28.8 103.6L28.8 113.6L28.8 123.7L28.9 123.8L29.1 124.0L39.0 124.0L49.0 124.0L49.4 123.8Z M74.4 123.8L74.5 123.5L74.5 113.6L74.5 103.7L74.2 103.3L73.9 103.0L64.0 103.0L54.1 103.0L53.8 103.3L53.5 103.7L53.5 113.6L53.5 123.5L53.6 123.8L53.8 124.0L64.0 124.0L74.2 124.0L74.4 123.8Z M99.2 113.8L99.3 103.7L99.0 103.3L98.7 103.0L88.8 103.0L78.8 103.0L78.5 103.3L78.2 103.6L78.2 113.7L78.2 123.7L78.6 123.8L78.9 124.0L89.0 123.9L99.1 123.9L99.2 113.8Z M123.9 101.6L124.0 79.4L123.9 78.8L123.7 78.2L113.7 78.2L103.6 78.2L103.3 78.5L103.0 78.8L103.0 101.3L103.0 123.7L103.2 123.8L103.3 124.0L113.6 123.9L123.9 123.9L123.9 101.6Z M99.0 98.9L99.2 98.6L99.2 88.9L99.2 79.2L99.0 78.7L98.7 78.2L64.0 78.2L29.3 78.2L29.0 78.6L28.8 78.9L28.8 88.8L28.8 98.7L29.1 99.0L29.4 99.2L64.0 99.2L98.7 99.2L99.0 98.9Z M49.4 74.2L49.7 73.9L49.7 64.0L49.7 54.1L49.4 53.8L49.1 53.5L26.7 53.5L4.4 53.5L4.2 53.7L4.0 53.9L4.0 64.0L4.0 74.1L4.3 74.4L4.7 74.6L26.9 74.6L49.1 74.5L49.4 74.2Z M123.5 74.5L124.0 74.2L124.0 64.0L124.0 53.8L123.8 53.6L123.5 53.5L101.2 53.5L78.9 53.5L78.6 53.8L78.2 54.1L78.2 64.0L78.2 73.9L78.6 74.2L78.9 74.5L100.9 74.6L122.9 74.6L123.0 74.7L123.0 74.8L123.5 74.5Z M74.2 74.2L74.5 73.9L74.5 51.6L74.5 29.3L74.2 29.0L73.9 28.7L64.0 28.7L54.1 28.7L53.8 29.0L53.5 29.3L53.5 51.6L53.5 73.9L53.8 74.2L54.1 74.5L64.0 74.5L73.9 74.5L74.2 74.2Z M24.7 49.4L25.0 49.1L24.9 26.6L24.9 4.1L14.4 4.1L4.0 4.0L4.0 4.3L4.0 4.6L4.0 27.0L4.0 49.3L4.1 49.5L4.3 49.8L14.4 49.8L24.4 49.8L24.7 49.4Z M49.4 49.4L49.8 49.0L49.8 39.2L49.8 29.4L49.5 29.1L49.2 28.8L39.3 28.8L29.3 28.8L29.0 29.1L28.8 29.4L28.8 39.1L28.8 48.8L29.0 49.3L29.3 49.8L39.1 49.8L49.0 49.8L49.4 49.4Z M99.0 49.4L99.2 49.1L99.2 39.3L99.2 29.4L99.0 29.1L98.7 28.8L88.9 28.8L79.2 28.8L78.7 29.0L78.2 29.3L78.2 39.1L78.2 49.0L78.6 49.4L79.0 49.8L88.8 49.8L98.7 49.8L99.0 49.4Z M123.9 49.2L124.0 48.6L123.9 26.4L123.9 4.1L113.5 4.1L103.1 4.1L103.1 26.6L103.0 49.1L103.3 49.4L103.6 49.8L113.7 49.8L123.7 49.8L123.9 49.2Z M99.0 24.7L99.3 24.3L99.2 14.2L99.1 4.1L64.0 4.1L28.9 4.1L28.8 14.2L28.7 24.3L29.0 24.7L29.3 25.0L64.0 25.0L98.7 25.0L99.0 24.7Z"/></g>
+    <g id="ico-menu"><path d="M3 7h18M3 13h18M3 19h18"/></g>
+    <g id="ico-close"><path d="M5 5l14 14M19 5L5 19"/></g>
+    <g id="ico-prev"><path d="M15 4L7 12l8 8"/></g>
+    <g id="ico-next"><path d="M9 4l8 8-8 8"/></g>
+  </defs>
+</svg>
+
+<a href="#top" class="skip">본문 바로가기</a>
+
+<header class="header">
+  <div class="wrap">
+    <a href="#top" class="brandmark" aria-label="한채 홈으로">
+      <img src="images/logo-hanchae.png" alt="">
+      <span class="kr">한채</span>
+      <span class="en">HANCHAE</span>
+    </a>
+    <button class="navbtn" id="navbtn" aria-label="메뉴 열기" aria-expanded="false">
+      <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-menu" id="navIcon"/></svg>
+    </button>
+    <nav class="nav" id="nav">
+      <a href="#brand">브랜드</a>
+      <a href="#trust">팀</a>
+      <a href="#heritage">국가유산</a>
+      <a href="#product">제품</a>
+      <a href="#faq">FAQ</a>
+      <a href="#buy">구매</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ================= 1. 히어로 ================= -->
+  <section class="hero on-dark">
+    <div class="hero-bg">
+      <img src="images/hero-lit-web.jpg" fetchpriority="high" decoding="async" alt="불이 켜진 볕채 한칸 조명과 세칸 조명. 문창살 사이로 따뜻한 빛이 번진다" fetchpriority="high">
+    </div>
+    <div class="wrap">
+      <h1>보는 국가유산에서<br><em>경험하는</em> 국가유산으로</h1>
+      <p class="hero-en">From heritage you look at, to heritage you live with.</p>
+      <p class="sub">유리 너머로만 보던 것을 손으로 짓고, 켜고, 곁에 두는 물건으로 옮깁니다.</p>
+      <div class="acts">
+        <a href="#product" class="btn btn-fill">제품 보기</a>
+        <a href="#brand" class="btn btn-line">브랜드 이야기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 2. 브랜드 선언 ================= -->
+  <section id="brand" class="declare">
+    <div class="wrap">
+      <p class="big">
+        박물관 유리장 안의 구조는 정확하지만 만질 수 없습니다.<br>
+        한채는 그 구조를 <span>책상 위 크기로 옮기고</span>,<br>
+        직접 지어보는 일로 바꿉니다.
+      </p>
+      <p class="after">
+        전북대학교 건축공학과에서 시작한 세 사람의 팀입니다.
+        전주한옥마을의 한옥 구조와 경기전 하마비에서 시작했고, 지금은 전주의 다른 공간유산으로
+        범위를 넓히고 있습니다. 어떤 유산이든 답사와 문헌으로 원형을 확인하고,
+        오늘 쓸 수 있는 물건으로 다시 설계한 뒤 직접 생산합니다.
+      </p>
+    </div>
+  </section>
+
+  <!-- ================= 3. 개발 프로세스 (스티키 스택) ================= -->
+  <div class="stack">
+    <article class="panel">
+      <div class="wrap">
+        <div>
+          <h2 class="step-kr">고증</h2>
+        </div>
+        <p class="step-body">현장에 갑니다. 실측하고, 문헌으로 다시 확인합니다.
+          국가유산 정기조사에 참여하며 목조와 석조 유산을 직접 살핍니다.
+          무늬 하나의 이름과 뜻까지 근거를 찾은 다음에야 설계를 시작합니다.</p>
+      </div>
+    </article>
+    <article class="panel">
+      <div class="wrap">
+        <div>
+          <h2 class="step-kr">재해석</h2>
+        </div>
+        <p class="step-body">원형을 축소하는 데서 끝내지 않습니다. 오늘의 책상에서
+          쓰일 이유를 찾아 형태와 기능을 다시 짭니다.</p>
+      </div>
+    </article>
+    <article class="panel">
+      <div class="wrap">
+        <div>
+          <h2 class="step-kr">경험</h2>
+        </div>
+        <p class="step-body">완제품을 배송하지 않습니다. 못도 접착제도 없이
+          직접 짜맞추는 30분이 이 오브제의 절반입니다.</p>
+      </div>
+    </article>
+  </div>
+
+  <!-- ================= 4. 팀 ================= -->
+  <section id="trust">
+    <div class="wrap">
+      <h2 class="title">국가유산을 다루는 사람들
+        <span class="en">The people behind the work</span>
+      </h2>
+      <p class="lead">전북대학교 건축공학과 세 사람이 기획, 브랜딩, 설계를 나눠 맡습니다.
+        국가유산 현장 경험을 바탕으로 설계부터 3D 모델링, 시제품 제작까지 직접 수행합니다.</p>
+
+      <!-- 사진이 준비되면 각 .member 맨 앞에 아래 한 줄을 넣으세요. CSS는 이미 있습니다.
+           <img class="member-photo" src="images/team-이름.jpg" alt="김성민" loading="lazy"> -->
+      <div class="team-grid">
+        <div class="member">
+          <div class="who">
+            <h3>김성민</h3>
+            <p class="role">대표 · 기획 및 운영</p>
+          </div>
+          <p class="what">답사와 문헌 조사로 제품의 근거를 만들고, 사업 전반을 이끕니다.</p>
+        </div>
+        <div class="member">
+          <div class="who">
+            <h3>고성수</h3>
+            <p class="role">마케팅 · 브랜딩 총괄</p>
+          </div>
+          <p class="what">브랜드 서사와 판매 채널을 맡고 있습니다.</p>
+        </div>
+        <div class="member">
+          <div class="who">
+            <h3>김효섭</h3>
+            <p class="role">하드웨어 · 설계 총괄</p>
+          </div>
+          <p class="what">결구 구조를 설계하고 3D프린팅 생산을 총괄합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 5. 현장조사 (자동 슬라이드) ================= -->
+  <section class="field">
+    <div class="wrap">
+      <h2 class="title">직접 보고 재고 그린 것만 만듭니다
+        <span class="en">Every object begins on site.</span>
+      </h2>
+      <p class="lead">사진으로 본 것과 실제로 선 앞에서 본 것은 다릅니다. 그래서 매번 갑니다.</p>
+
+      <!-- TODO: 현장조사 사진 6~8컷. 파일명에 장소와 날짜를 넣어주세요 (예: 경기전_하마비_260715.jpg)
+           캡션의 장소와 날짜는 실제 값으로 바꿔야 합니다. 임의로 채우지 않았습니다. -->
+      <div class="rail" id="rail" tabindex="0" aria-label="현장조사 기록">
+        <figure>
+          <img src="images/field-hanokmaeul-260628.jpg" loading="lazy"
+               alt="전주 한옥마을을 가로지르는 다리와 그 위에 올라앉은 한옥 누각">
+          <figcaption><b>전주 한옥마을</b>첫 답사. 한옥의 칸과 지붕 형식을 살폈습니다.
+            <span class="cap-date">2026.06.28</span></figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/field-bulhoesa-kkotsal-260629.jpg" loading="lazy"
+               alt="나주 불회사의 꽃살문. 살대마다 색색의 꽃이 새겨져 있다">
+          <figcaption><b>나주 불회사</b>국가유산 정기조사 중 꽃살을 관찰했습니다.
+            <span class="cap-date">2026.06.29</span></figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/field-yeongam-seoktap-260629.jpg" loading="lazy"
+               alt="영암의 석탑. 층마다 지붕돌이 겹쳐 올라간다">
+          <figcaption><b>영암</b>같은 조사 일정에서 석탑의 층별 비례를 살폈습니다.
+            <span class="cap-date">2026.06.29</span></figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/field-hamabi-260711.jpg" loading="lazy"
+               alt="경기전 앞 하마비. 암수 사자 석수가 판석과 비신을 떠받치고 있다">
+          <figcaption><b>경기전 하마비</b>두 번째 전주 답사. 암수 석수의 차이를 살폈습니다.
+            <span class="cap-date">2026.07.11</span></figcaption>
+        </figure>
+      </div>
+      <div class="rail-foot">
+        <button type="button" id="railPrev" aria-label="이전 사진"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-prev"/></svg></button>
+        <button type="button" id="railNext" aria-label="다음 사진"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><use href="#ico-next"/></svg></button>
+      </div>
+
+      <div class="log">
+        <div class="log-row">
+          <span class="when now">진행 중</span>
+          <p>2026 국가유산 정기조사 참여. 목조와 석조 유산을 현장에서 직접 살핍니다.</p>
+        </div>
+        <div class="log-row">
+          <span class="when now">진행 중</span>
+          <p>전주시소통협력센터 전주살LAB. 전주 국가유산 기반 제품 개발과 지역 연계.</p>
+        </div>
+        <div class="log-row">
+          <span class="when">2026.07</span>
+          <p>첫 텀블벅 펀딩 <span class="pct">532%</span> 달성. 후원자 80명.</p>
+        </div>
+        <div class="log-row">
+          <span class="when">2026.06</span>
+          <p>볕채 시리즈 텀블벅 오픈.</p>
+        </div>
+      </div>
+
+      <div class="grants">
+        <h3>창업 지원사업 다섯 곳에 선정됐습니다</h3>
+        <ul>
+          <li><b>교육부</b>학생창업유망팀 300+</li>
+          <li><b>중소벤처기업부</b>모두의 창업</li>
+          <li><b>전주시소통협력센터</b>전주살LAB</li>
+          <li><b>캠틱종합기술원</b>창창한 창업스쿨</li>
+          <li><b>전북대학교 창업교육센터</b>학생창업동아리 및 창업기업 지원사업</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 6. 국가유산 콘텐츠 (벤토) ================= -->
+  <section id="heritage">
+    <div class="wrap">
+      <h2 class="title">무늬를 고른다는 건, 뜻을 고른다는 것
+        <span class="en">Patterns carry meaning, not decoration.</span>
+      </h2>
+      <p class="lead">창살은 빛을 막는 물건이 아니라 빛을 그리는 물건이었습니다.
+        창호지를 지난 빛이 살대에 걸리면 벽에 격자 그림자가 깔립니다.
+        전주한옥마을의 창을 돌며 무늬를 채집하고, 문헌으로 이름과 뜻을 확인했습니다.</p>
+
+      <div class="bento">
+
+        <div class="cell">
+          <h3>문창살 다섯 무늬</h3>
+          <p>조명에는 세 무늬, 책갈피에는 다섯 무늬를 씁니다.</p>
+
+          <div class="lattice">
+            <div class="lat">
+              <svg viewBox="0 0 128 128" role="img" aria-label="완자살 무늬. 卍자를 이어 붙인 격자">
+                <rect class="glow" width="128" height="128"/>
+                <use href="#lat-wanja" class="bar"/>
+              </svg>
+              <h4>완자살</h4><p class="mean">만복 · 萬福</p>
+              <p class="use">끊기지 않고 이어지는 卍자. 궁궐과 사대부집 안방에 놓였습니다.</p>
+            </div>
+
+            <div class="lat">
+              <svg viewBox="0 0 128 128" role="img" aria-label="귀갑살 무늬. 거북 등껍질을 닮은 격자">
+                <rect class="glow" width="128" height="128"/>
+                <use href="#lat-guigap" class="bar"/>
+              </svg>
+              <h4>귀갑살</h4><p class="mean">장수 · 長壽</p>
+              <p class="use">거북 등껍질의 육각. 오래 살라는 인사입니다.</p>
+            </div>
+
+            <div class="lat">
+              <svg viewBox="0 0 128 128" role="img" aria-label="아자살 무늬. 亞자를 본뜬 격자">
+                <rect class="glow" width="128" height="128"/>
+                <use href="#lat-aja" class="bar"/>
+              </svg>
+              <h4>아자살</h4><p class="mean">존경 · 尊敬</p>
+              <p class="use">단정한 여백. 왕비의 처소와 안주인의 방에 쓰였습니다.</p>
+            </div>
+
+            <div class="lat">
+              <svg viewBox="0 0 128 128" role="img" aria-label="꽃살 무늬. 살대마다 꽃을 새긴 격자">
+                <rect class="glow" width="128" height="128"/>
+                <use href="#lat-kkot" class="bar"/>
+              </svg>
+              <h4>꽃살</h4><p class="mean">사랑 · 愛</p>
+              <p class="use">살대마다 꽃을 새긴 무늬. 사찰의 정면 문을 장식했습니다.</p>
+            </div>
+
+            <div class="lat">
+              <svg viewBox="0 0 128 128" role="img" aria-label="숫대살 무늬. 산가지를 늘어놓은 격자">
+                <rect class="glow" width="128" height="128"/>
+                <use href="#lat-sutdae" class="bar"/>
+              </svg>
+              <h4>숫대살</h4><p class="mean">학업 · 學業</p>
+              <p class="use">셈하던 산가지 모양. 사랑채와 별당에 즐겨 썼습니다.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="cell">
+          <h3>한옥은 칸으로 자랍니다</h3>
+          <p>칸은 기둥과 기둥 사이, 한옥의 기본 단위입니다.
+             전주한옥마을은 이 칸이 이어지고 늘어나며 만들어진 동네입니다.</p>
+          <p>가운데 어칸을 두고 양옆에 협칸이 붙으면 세 칸이 됩니다.
+             볕채가 한칸과 세칸 두 가지인 이유가 여기 있습니다.
+             크기를 줄인 게 아니라 한옥이 자라는 방식을 그대로 옮겼습니다.</p>
+          <p>지붕도 따라 달라집니다. 한칸집에는 형태가 간결한 맞배지붕을,
+             세칸집에는 구조와 외관이 한층 화려한 팔작지붕을 얹었습니다.
+             한옥이 격에 따라 지붕을 달리 쓰던 방식 그대로입니다.</p>
+        </div>
+
+        <div class="cell quiet">
+          <h3>한국 창살이 중국, 일본과 다른 점</h3>
+          <p>창호지를 바르는 면이 다릅니다. 한국은 안쪽, 중국과 일본은 바깥쪽.
+             그래서 같은 창이라도 한국 창호는 밖에서 보면 살대의 선이 드러나고,
+             안에서 보면 종이의 면이 드러납니다.</p>
+          <p>살대의 두께도 다릅니다. 일본처럼 날카롭지도, 중국처럼 딱딱하지도 않은
+             도톰한 굵기를 씁니다. 무늬 역시 중국보다 단순하고 일본보다 복잡한 중간에 있습니다.</p>
+        </div>
+
+        <div class="cell tinted">
+          <p class="hanja">至此皆下馬</p>
+          <h3>여기 이르면 모두 말에서 내리라</h3>
+          <p>조선 태조의 어진을 모신 경기전, 그 앞 하마비에 새겨진 문장입니다.
+             신분이 아무리 높아도 이 앞에서는 내려서 걸으라는 뜻이었습니다.</p>
+          <p>경기전 하마비는 드문 형태입니다. 암수 한 쌍의 사자형 석수가
+             판석과 비신을 떠받치고 있습니다. 현장에서 재어 보니 두 석수는
+             엉덩이 크기도, 얼굴 생김도, 고개를 든 방향도 서로 달랐습니다.
+             그 차이까지 구분해 옮겼습니다.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 7. 볕채 ================= -->
+  <section id="product">
+    <div class="wrap">
+      <h2 class="title">볕채
+        <span class="en">Byeotchae. A hanok you assemble, then light.</span>
+      </h2>
+      <p class="lead">한옥의 칸과 결구를 그대로 옮긴 조립식 무드등입니다.</p>
+    </div>
+
+    <div class="bleed">
+      <img src="images/product-detail.jpg" alt="불을 끈 볕채 한칸과 세칸 조명. 기와와 기둥, 문창살의 구조가 선명하게 드러난다" loading="lazy">
+    </div>
+
+    <div class="wrap">
+      <div class="readout">
+        <div>
+          <p>한옥은 못을 쓰지 않습니다. 기둥과 보가 서로를 붙잡는 결구로 섭니다.
+             볕채는 초석 위에 기둥을 세우고 창방과 보, 도리를 얹는 실제 한옥의
+             부재 구성을 그대로 씁니다. 이음은 주먹장, 나무가 서로를 물어 빠지지 않는 방식입니다.</p>
+          <p>한칸은 부재 서른한 개, 세칸은 쉰여섯 개입니다. 꾸러미 셋과 큰 부재 둘로 나뉘어 담기고,
+             기초와 골조를 세운 뒤 벽과 창을 끼우고 마지막에 지붕을 얹습니다.
+             지붕은 자석으로 물려 있어 언제든 들어 열 수 있습니다.</p>
+          <p>부재를 순서대로 끼우면 구조가 스스로 섭니다. 외형을 흉내 낸 것이 아니라
+             한옥이 세워지는 순서를 그대로 겪게 만든 것입니다.
+             마지막에 불을 켜면 문창살 그림자가 벽에 깔립니다.</p>
+          <p>무늬는 완자, 귀갑, 아자 중에서 고릅니다. 만복, 장수, 존경.
+             받는 사람에게 건넬 말을 무늬로 고르는 셈입니다.</p>
+        </div>
+        <div>
+          <dl class="chunk">
+            <dt>구조</dt>
+            <dd>한칸 조명 맞배지붕<br>세칸 조명 팔작지붕<br>초석, 기둥, 창방, 보, 도리<br>주먹장 결구, 못과 접착제 없음</dd>
+          </dl>
+          <dl class="chunk">
+            <dt>제원</dt>
+            <dd>한칸 125 × 100 × 132 mm<br>세칸 214 × 109 × 140 mm<br>PLA, 조립 및 출력 특성상 ±2mm<br>만 14세 이상</dd>
+          </dl>
+          <dl class="chunk">
+            <dt>사용</dt>
+            <dd>부재 31개(한칸) / 56개(세칸)<br>조립 약 30분, 공구 불필요<br><b>AA 건전지 3개 (미포함)</b><br>문창살 세 무늬 중 택 1</dd>
+          </dl>
+          <!-- [학습] 가격은 브랜드 페이지에서 크게 외치지 않습니다.
+               찾는 사람에게는 보이고, 톤은 흐트러지지 않는 크기로 둡니다. -->
+          <p class="price">자세한 사양과 가격, 배송은 네이버 스마트스토어에서 안내합니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. 하마비 ================= -->
+  <section class="next-series" id="series">
+    <div class="wrap">
+      <figure class="hamabi-shot">
+        <img src="images/hamabi-product.jpg" loading="lazy"
+             alt="하마비 시제품. 至此皆下馬 雜人毋得入이 새겨진 비신을 판석이 받치고, 그 아래 암수 사자 석수 한 쌍이 판석을 떠받치고 있다">
+      </figure>
+      <p class="pill">2026년 9월 말 출시 예정</p>
+      <h2 class="title">하마비
+        <span class="en">Hamabi. The place your phone dismounts.</span>
+      </h2>
+      <p>경기전 하마비의 예법을 휴대폰을 내려놓는 자리로 옮겼습니다.
+        비신과 판석, 암수 석수의 구성은 그대로 두고, 두 사자가 휴대폰을 받치도록 다시 짰습니다.
+        말에서 내리라던 문장이 오늘은 잠시 폰을 내려두라는 말이 됩니다.
+        시제품 제작을 마치고 9월 말 출시를 준비하고 있습니다.</p>
+      <p class="more-coming">볕채와 하마비 다음으로, 전주의 다른 공간유산도 차례로 옮기고 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- ================= 9. 자주 묻는 질문 ================= -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <h2 class="title">자주 묻는 질문
+        <span class="en">Before you order.</span>
+      </h2>
+
+      <div class="faq-list">
+        <details>
+          <summary>조립이 어렵지 않나요? 도구가 필요한가요?</summary>
+          <p>설명서를 보며 만들면 성인 기준으로 30분쯤 걸립니다. 공구는 필요하지 않습니다.
+             설명서에 있는 QR을 찍으면 조립 영상을 보면서 따라 하실 수 있습니다.</p>
+        </details>
+        <details>
+          <summary>전원은 어떻게 되나요? 건전지가 들어 있나요?</summary>
+          <p>기단에 조명 소켓을 직접 넣어 만들었습니다. AA 건전지 3개를 끼워 켜며,
+             건전지는 들어 있지 않아 따로 준비하셔야 합니다.</p>
+        </details>
+        <details>
+          <summary>전구를 갈아 끼울 수 있나요?</summary>
+          <p>조명은 일체형으로 제작합니다. 사용자가 직접 교체하기는 어렵습니다.</p>
+        </details>
+        <details>
+          <summary>분해했다가 다시 조립할 수 있나요?</summary>
+          <p>가능합니다. 문창살도 바꿔 끼울 수 있습니다.
+             다만 여러 번 반복하면 결합력이 조금씩 떨어질 수 있습니다.</p>
+        </details>
+        <details>
+          <summary>문창살 무늬를 나중에 바꿀 수 있나요?</summary>
+          <p>추가 구성을 따로 구입하시면 원하는 무늬로 교체하실 수 있습니다.</p>
+        </details>
+        <details>
+          <summary>선물 포장이 되나요?</summary>
+          <p>저희가 직접 포장해서 보내드립니다.</p>
+        </details>
+        <details>
+          <summary>배송은 얼마나 걸리나요?</summary>
+          <p>주문을 받고 만들기 때문에 일정이 달라질 수 있습니다.
+             배송비와 배송 일정은 네이버 스마트스토어의 안내를 확인해 주세요.</p>
+        </details>
+      </div>
+
+      <p class="faq-more">더 궁금한 점은 인스타그램 <a href="https://instagram.com/hanok_hanchae" target="_blank" rel="noopener">@hanok_hanchae</a> 로 메시지를 보내주세요.</p>
+    </div>
+  </section>
+
+  <!-- ================= 10. 단체 문의 ================= -->
+  <section class="b2b">
+    <div class="wrap">
+      <h2>기관의 굿즈와 교육 키트를 함께 만듭니다</h2>
+      <p>박물관, 문화재단, 지자체, 기업의 기념품을 기획부터 생산까지 맡습니다.
+        외주가 아니라 자체 3D프린팅 설비로 만들기 때문에 소량 커스텀과 무늬 신규 제작이 가능합니다.
+        고증이 필요한 소재일수록 잘합니다.</p>
+      <p>조립하며 한옥의 구조를 배우는 체험 키트와 교구도 개발하고 있습니다.
+        국가유산야행 같은 지역 행사, 학생 대상 프로그램과 연계한 운영도 가능합니다.</p>
+      <button type="button" class="btn btn-line" id="inquiryBtn"
+              aria-expanded="false" aria-controls="inquiryPanel">제작 문의하기</button>
+
+      <div class="inquiry" id="inquiryPanel" hidden>
+        <p class="mail-row">
+          <a class="mail-addr" href="mailto:hanchae2623@gmail.com?subject=한채 제작 문의">hanchae2623@gmail.com</a>
+          <button type="button" class="copy-btn" id="copyMail" data-mail="hanchae2623@gmail.com">주소 복사</button>
+        </p>
+        <div class="inquiry-what">
+          <p>메일에 아래 내용을 함께 적어 보내주시면 더 빠르게 안내드릴 수 있습니다.</p>
+          <ul>
+            <li>기관 또는 기업명과 담당자 연락처</li>
+            <li>만들고 싶은 품목과 대략의 수량</li>
+            <li>필요한 시기</li>
+            <li>참고할 국가유산이나 이미지가 있다면 함께</li>
+          </ul>
+          <p>내용을 확인하는 대로 회신드립니다. 전화 <a href="tel:07080800412">070-8080-0412</a>로도 문의하실 수 있습니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 11. 구매 ================= -->
+  <section class="buy" id="buy">
+    <div class="wrap">
+      <h2 class="title">한채를 곁에 두는 방법
+        <span class="en">Bring it home.</span>
+      </h2>
+      <p class="lead" id="storeDesc">네이버 스마트스토어 오픈을 준비하고 있습니다.
+        인스타그램을 팔로우하고 알림을 켜두시면 오픈 소식을 가장 먼저 받아보실 수 있습니다.</p>
+      <div class="acts">
+        <a class="btn btn-fill" href="https://instagram.com/hanok_hanchae" target="_blank" rel="noopener">인스타그램 팔로우</a>
+        <button id="storeBtn" class="btn btn-line" disabled>스토어 준비 중</button>
+      </div>
+      <p class="note">@hanok_hanchae &nbsp;|&nbsp; <a href="tel:07080800412">070-8080-0412</a> &nbsp;|&nbsp; <a href="mailto:hanchae2623@gmail.com">hanchae2623@gmail.com</a></p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="brandmark">
+        <img loading="lazy" src="images/logo-hanchae.png" alt="">
+        <span class="kr">한채</span>
+        <span class="en">HANCHAE</span>
+      </div>
+      <nav class="footer-links">
+        <a href="#brand">브랜드</a>
+        <a href="#heritage">국가유산</a>
+        <a href="#product">제품</a>
+        <a href="https://instagram.com/hanok_hanchae" target="_blank" rel="noopener">Instagram</a>
+      </nav>
+    </div>
+    <!-- [학습] 통신판매업 신고번호는 사업자등록의 업태·종목(전자상거래 소매업)과 별개입니다.
+         관할 지자체에 따로 신고하고 받는 번호이며, 온라인 판매를 시작하기 전에 반드시 필요합니다.
+         아직 신고 전이라 이 줄은 비워 두었습니다. 번호가 나오면 아래 주석을 풀고 채우세요. -->
+    <div class="biz">
+      상호 한채 &nbsp;|&nbsp; 대표 김성민 &nbsp;|&nbsp; 사업자등록번호 667-36-01704<br>
+      주소 전북특별자치도 전주시 덕진구 사평로 24 대동빌딩 4층 408호<br>
+      전화 <a href="tel:07080800412">070-8080-0412</a> &nbsp;|&nbsp; 문의 <a href="mailto:hanchae2623@gmail.com">hanchae2623@gmail.com</a><br>
+      <!-- 통신판매업신고 제0000-전북전주-0000호<br> -->
+      © 2026 HANCHAE
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   [학습] HTML은 뼈대, CSS는 옷, JS는 움직임. 셋을 섞지 않습니다.
+   여기에 있는 동작은 세 가지뿐이고, 각각 이유를 한 문장으로 댈 수 있습니다.
+   첫 화면 등장과 고증-재해석-경험 스택은 JS 없이 CSS만으로 돕니다.
+   ============================================================ */
+
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* --- 1. 스토어 링크 스위치 ------------------------------------
+   스토어가 열리면 아래 한 줄만 실제 주소로 바꾸면 버튼이 자동 전환됩니다. */
+const STORE_URL = ""; // 예: "https://smartstore.naver.com/hanchae"
+if (STORE_URL) {
+  // 주소가 생기면 비활성 버튼을 진짜 링크로 바꿔 끼웁니다
+  const b = document.getElementById('storeBtn');
+  const a = document.createElement('a');
+  a.id = 'storeBtn'; a.className = 'btn btn-line';
+  a.href = STORE_URL; a.target = '_blank'; a.rel = 'noopener';
+  a.textContent = '스토어에서 구매';
+  b.replaceWith(a);
+  document.getElementById('storeDesc').textContent = "네이버 스마트스토어에서 바로 주문하실 수 있습니다.";
+}
+
+/* --- 2. 모바일 메뉴 --------------------------------------- */
+const navbtn = document.getElementById('navbtn');
+const navIcon = document.getElementById('navIcon');
+const nav = document.getElementById('nav');
+navbtn.addEventListener('click', () => {
+  const open = nav.classList.toggle('open');
+  navbtn.setAttribute('aria-expanded', open);
+  navbtn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+  navIcon.setAttribute('href', open ? '#ico-close' : '#ico-menu');
+});
+nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  nav.classList.remove('open');
+  navbtn.setAttribute('aria-expanded', 'false');
+  navIcon.setAttribute('href', '#ico-menu');
+}));
+
+/* --- 3. 단체 문의 안내 펼치기 -----------------------------
+   목적: 폼 없이 메일 주소와 적어 보낼 내용을 그 자리에서 알려주기. */
+const inqBtn = document.getElementById('inquiryBtn');
+const inqPanel = document.getElementById('inquiryPanel');
+if (inqBtn && inqPanel) {
+  inqBtn.addEventListener('click', () => {
+    const open = inqPanel.hasAttribute('hidden');
+    if (open) inqPanel.removeAttribute('hidden'); else inqPanel.setAttribute('hidden', '');
+    inqBtn.setAttribute('aria-expanded', open);
+    inqBtn.textContent = open ? '접기' : '제작 문의하기';
+  });
+
+  const copyBtn = document.getElementById('copyMail');
+  copyBtn.addEventListener('click', async () => {
+    const mail = copyBtn.dataset.mail;
+    try {
+      await navigator.clipboard.writeText(mail);
+    } catch {
+      // 클립보드 권한이 없는 환경에서는 옛 방식으로 되돌립니다
+      const t = document.createElement('textarea');
+      t.value = mail; t.style.position = 'fixed'; t.style.opacity = '0';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch {}
+      t.remove();
+    }
+    copyBtn.textContent = '복사했습니다';
+    copyBtn.setAttribute('data-done', '');
+    setTimeout(() => {
+      copyBtn.textContent = '주소 복사';
+      copyBtn.removeAttribute('data-done');
+    }, 2000);
+  });
+}
+
+/* --- 4. 현장조사 자동 슬라이드 -----------------------------
+   목적: 사진을 세로로 길게 늘어놓지 않고 한 자리에서 넘기기 (가이드 요구사항).
+   손을 대거나 키보드로 포커스하면 멈추고, 동작 줄이기 설정에서는 아예 안 돕니다. */
+const rail = document.getElementById('rail');
+if (rail) {
+  const step = () => rail.querySelector('figure').getBoundingClientRect().width + 20;
+  const go = (dir) => {
+    const max = rail.scrollWidth - rail.clientWidth;
+    let next = rail.scrollLeft + dir * step();
+    if (next > max - 4) next = 0;              // 끝에 닿으면 처음으로
+    if (next < 0) next = max;
+    rail.scrollTo({ left: next, behavior: reduce ? 'auto' : 'smooth' });
+  };
+  document.getElementById('railNext').addEventListener('click', () => go(1));
+  document.getElementById('railPrev').addEventListener('click', () => go(-1));
+
+  if (!reduce) {
+    let timer = setInterval(() => go(1), 4500);
+    const stop = () => { clearInterval(timer); timer = null; };
+    ['pointerenter', 'pointerdown', 'focusin'].forEach(ev => rail.addEventListener(ev, stop));
+    document.querySelectorAll('.rail-foot button').forEach(b => b.addEventListener('click', stop));
+  }
+}
+</script>
+
+<!--
+  ============================================================
+  사진 교체 안내 (빈 슬롯 목록)
+  ============================================================
+  아래 자리는 지금 비어 있습니다. 사진이 준비되면 해당 figure.slot 요소를
+  img 태그(src, alt, loading="lazy")로 바꾸면 됩니다.
+
+  1) 팀 (3장, 세로 3:4)         - 김효섭 / 고성수 / 김성민
+  2) 현장조사 (5~8장, 가로 4:3) - 캡션의 장소와 날짜를 실제 값으로 수정 필요.
+                                  지금 적힌 캡션은 예시이므로 사실과 다르면 반드시 고치세요.
+  3) 하마비 제품 (1장, 16:10)   - 실물 촬영본
+  4) 히어로 루프 영상 (선택)     - 5~10초. img 태그를 video 태그(autoplay muted loop playsinline)로 교체
+
+  아직 채우지 않은 정보
+  - 푸터 사업자 정보 (통신판매업 신고번호 포함, 온라인 판매 시 법적 필수)
+  - 문의 이메일 (현재 hanchae2623@gmail.com 은 임시)
+  - 스토어 주소 (STORE_URL 상수)
+  - 펀딩 실적 숫자 (실제 데이터 확인 전까지 넣지 않았습니다)
+-->
+</body>
+</html>
