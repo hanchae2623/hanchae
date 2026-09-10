@@ -29,14 +29,14 @@
   <meta property="og:type" content="website">
   <meta property="og:title" content="한채 HANCHAE - 보는 국가유산에서, 경험하는 국가유산으로">
   <meta property="og:description" content="한국의 건축과 유물을 손으로 짓는 오브제로.">
-  <meta property="og:image" content="https://hanchae2623.github.io/hanchae/images/og-hanchae-1200.jpg">
+  <meta property="og:image" content="https://hanchae.site/images/og-hanchae-1200.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="불을 켠 볕채 한칸집과 세칸집">
-  <meta property="og:url" content="https://hanchae2623.github.io/hanchae/">
+  <meta property="og:url" content="https://hanchae.site/">
   <meta property="og:site_name" content="한채 HANCHAE">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://hanchae2623.github.io/hanchae/">
+  <link rel="canonical" href="https://hanchae.site/">
   <meta property="og:locale" content="ko_KR">
 
   <!-- [학습] LCP(첫 화면 로딩) 최적화. 히어로 이미지를 미리 받아두라고 브라우저에 알립니다. -->
@@ -1237,11 +1237,9 @@ section { padding: 140px 0; }
 const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 /* --- 1. 스토어 링크 스위치 ------------------------------------
-   스토어 주소는 https://smartstore.naver.com/hanok_hanchae 입니다.
-   상품 등록이 끝나면 아래 빈 따옴표 안에 그 주소를 넣으세요.
-   그것만으로 '스토어 준비 중' 버튼이 '스토어에서 구매' 링크로 바뀝니다.
-   지금은 상품이 없어 일부러 비워 둡니다. 빈 매장으로 보내면 신뢰를 잃습니다. */
-const STORE_URL = ""; // 열리면 여기에: "https://smartstore.naver.com/hanok_hanchae"
+   주소가 들어 있으면 '스토어 준비 중' 버튼이 '스토어에서 구매' 링크로 바뀌고
+   아래 설명 문구도 함께 교체됩니다. 다시 닫으려면 따옴표 안을 비우면 됩니다. */
+const STORE_URL = "https://smartstore.naver.com/hanok_hanchae";
 if (STORE_URL) {
   // 주소가 생기면 비활성 버튼을 진짜 링크로 바꿔 끼웁니다
   const b = document.getElementById('storeBtn');
