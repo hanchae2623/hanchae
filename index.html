@@ -502,14 +502,26 @@ section { padding: 140px 0; }
 }
 /* [학습] 다섯 개를 2열로 두면 마지막 하나가 홀로 남아 오른쪽이 크게 빕니다.
    3열이면 3+2로 앉아 빈 자리가 절반으로 줄고 칸이 옆으로 퍼져 띠처럼 읽힙니다. */
-.grants ul { list-style: none; margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px 36px; }
+.grants ul { list-style: none; margin-top: 32px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px 36px; }
 @media (max-width: 900px) { .grants ul { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 560px) { .grants ul { grid-template-columns: 1fr; gap: 18px; } }
+@media (max-width: 560px) { .grants ul { grid-template-columns: 1fr; gap: 24px; } }
 .grants li { font-size: 15px; color: var(--on-accent); }
 .grants li b {
   display: block; font-weight: 600; font-size: 13px; letter-spacing: .02em;
   color: color-mix(in srgb, var(--on-accent) 72%, transparent); margin-bottom: 3px;
 }
+
+/* [학습] 기관 로고는 색과 여백 규정이 정해져 있어 흑백으로 바꾸면 규정에 어긋납니다.
+   그래서 로고는 원래 색 그대로 두고, 대신 밝은 판을 깔아 먹빛 위에서도 보이게 합니다.
+   이 판만은 --paper를 쓰지 않고 아이보리 값을 직접 적습니다. 로고가 모두 어두운 색이라
+   다크 모드에서 --paper가 먹빛으로 뒤집히면 로고가 판에 묻혀 사라지기 때문입니다.
+   덕분에 다크 모드에서는 판이 칸 색과 같아져 로고만 떠 있는 것처럼 보입니다. */
+.grant-mark {
+  width: 132px; height: 96px; margin-bottom: 16px;
+  background: #F0EDE6; display: grid; place-items: center; padding: 12px;
+}
+.grant-mark img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+@media (max-width: 560px) { .grant-mark { width: 116px; height: 84px; } }
 
 /* ============================================================
    12. 국가유산 콘텐츠 - 벤토
@@ -849,11 +861,26 @@ section { padding: 140px 0; }
       <div class="grants">
         <h3>창업 지원사업 다섯 곳에 선정됐습니다</h3>
         <ul>
-          <li><b>교육부</b>학생창업유망팀 300+</li>
-          <li><b>중소벤처기업부</b>모두의 창업</li>
-          <li><b>전주시소통협력센터</b>전주살LAB</li>
-          <li><b>캠틱종합기술원</b>창창한 창업스쿨</li>
-          <li><b>전북대학교 창업교육센터</b>학생창업동아리 및 창업기업 지원사업</li>
+          <li>
+            <span class="grant-mark"><img src="images/grant-moe.png" alt="" loading="lazy" decoding="async"></span>
+            <b>교육부</b>학생창업유망팀 300+
+          </li>
+          <li>
+            <span class="grant-mark"><img src="images/grant-modu.png" alt="" loading="lazy" decoding="async"></span>
+            <b>중소벤처기업부</b>모두의 창업
+          </li>
+          <li>
+            <span class="grant-mark"><img src="images/grant-jeonju-ccc.png" alt="" loading="lazy" decoding="async"></span>
+            <b>전주시소통협력센터</b>전주살LAB
+          </li>
+          <li>
+            <span class="grant-mark"><img src="images/grant-camtic.png" alt="" loading="lazy" decoding="async"></span>
+            <b>캠틱종합기술원</b>창창한 창업스쿨
+          </li>
+          <li>
+            <span class="grant-mark"><img src="images/grant-jbnu.png" alt="" loading="lazy" decoding="async"></span>
+            <b>전북대학교 창업교육센터</b>학생창업동아리 및 창업기업 지원사업
+          </li>
         </ul>
       </div>
 
