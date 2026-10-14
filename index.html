@@ -14,6 +14,13 @@
     · 모서리 전부 각짐, 아이브로우 5개 → 3개
     · 사진 미확보 구간은 가짜 이미지 대신 빈 슬롯으로 명시
 
+  2026-10-14 최신화
+    · 수상과 인증 / 행사와 부스 블록 신설 (#record), 연혁 5월~11월로 확장
+    · 텀블벅 실적 532%·80명 → 542%·85명 (정산 기준)
+    · 볕채 문창살 세 무늬 → 다섯 무늬, 조립 30분 → 한칸 약 15분
+    · 하마비 '9월 말 출시 예정' → 스마트스토어 판매 중
+    · 배송 FAQ를 재고 출고 방식으로, 기관 납품 실적 추가
+
   사진이 들어올 자리는 전부 TODO 주석으로 표시해 뒀습니다.
   파일 맨 아래 "사진 교체 안내" 주석에 목록이 정리돼 있습니다.
 -->
@@ -81,6 +88,10 @@
       "addressRegion": "전북특별자치도",
       "addressCountry": "KR"
     },
+    "award": [
+      "2026 전주 로컬브랜딩 아이디어 해커톤 우수상",
+      "학생창업유망팀300+ 교육부 장관 인증"
+    ],
     "sameAs": [
       "https://smartstore.naver.com/hanok_hanchae",
       "https://instagram.com/hanok_hanchae"
@@ -516,6 +527,28 @@ section { padding: 140px 0; }
   letter-spacing: -.01em; line-height: 1;
 }
 
+/* --- 수상과 인증 -------------------------------------------
+   [학습] 수상은 '무엇을 받았나'가 제목입니다. 그래서 날짜보다 상 이름을 크게,
+   주최 기관은 그 아래 작게 둡니다. 지원사업 띠(먹빛 면)와 겹치지 않게
+   여기서는 면을 깔지 않고 굵은 윗선 하나로만 구분합니다. */
+.honors { list-style: none; margin-top: 28px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0 36px; }
+@media (max-width: 900px) { .honors { grid-template-columns: 1fr; } }
+.honors li { border-top: 2px solid var(--ink); padding: 18px 0 26px; }
+.honors .h-when { font-family: var(--font-latin); font-size: 12px; letter-spacing: .1em; color: var(--ink-soft); }
+.honors .h-name { font-family: var(--font-title); font-size: clamp(19px, 2vw, 23px); font-weight: 600; line-height: 1.4; margin-top: 10px; color: var(--ink); }
+.honors .h-by { font-size: 14px; color: var(--ink-soft); margin-top: 6px; }
+
+/* --- 행사와 부스 -------------------------------------------
+   [학습] 연혁과 같은 한 줄 목록으로 두면 두 목록이 붙어 하나로 읽힙니다.
+   행사는 '어디서 무엇을 했나'를 보여줘야 해서 칸으로 나눈 카드로 둡니다. */
+.events { list-style: none; margin-top: 28px; display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); }
+@media (max-width: 720px) { .events { grid-template-columns: 1fr; } }
+.events li { background: var(--paper); padding: 24px clamp(20px, 2.6vw, 30px) 28px; }
+.events .e-when { display: flex; gap: 10px; align-items: center; font-family: var(--font-latin); font-size: 12px; letter-spacing: .1em; color: var(--ink-soft); }
+.events .e-when .now { font-family: var(--font-body); letter-spacing: 0; font-weight: 600; background: var(--accent); color: var(--on-accent); padding: 2px 9px; }
+.events h4 { font-family: var(--font-title); font-size: 19px; font-weight: 600; line-height: 1.45; margin-top: 12px; color: var(--ink); }
+.events p { font-size: 15px; color: var(--ink-soft); margin-top: 8px; }
+
 /* 섹션 안의 소제목. 팀 / 지원사업 / 연혁을 나누는 층 */
 .sub-head {
   font-family: var(--font-title); font-size: clamp(19px, 2.1vw, 24px);
@@ -780,6 +813,7 @@ section { padding: 140px 0; }
     <nav class="nav" id="nav">
       <a href="#brand">브랜드</a>
       <a href="#trust">팀·연혁</a>
+      <a href="#record">수상·행사</a>
       <a href="#heritage">국가유산</a>
       <a href="#product">제품</a>
       <a href="#faq">FAQ</a>
@@ -924,7 +958,45 @@ section { padding: 140px 0; }
         </ul>
       </div>
 
-      <h3 class="sub-head">진행 중인 활동과 연혁</h3>
+      <h3 class="sub-head" id="record">수상과 인증</h3>
+      <ul class="honors">
+        <li>
+          <p class="h-when">2026.09</p>
+          <p class="h-name">2026 전주 로컬브랜딩 아이디어 해커톤 우수상</p>
+          <p class="h-by">전주시 · 전주소통협력센터</p>
+        </li>
+        <li>
+          <p class="h-when">2026.08</p>
+          <p class="h-name">학생창업유망팀300+ 교육부 장관 인증</p>
+          <p class="h-by">교육부</p>
+        </li>
+      </ul>
+
+      <h3 class="sub-head">행사와 부스</h3>
+      <ul class="events">
+        <li>
+          <p class="e-when"><span class="now">진행 중</span>2026.10.13 – 10.30</p>
+          <h4>마켓소소 팝업</h4>
+          <p>전주소통협력센터 본관 1층 팝업홍보존. 볕채 부재 조립 체험과 함께 하마비, 문창살 책갈피, 이곳에서 처음 선보이는 풍남문 책갈피를 만나실 수 있습니다. 평일 09:00–18:00.</p>
+        </li>
+        <li>
+          <p class="e-when">2026.10.02 – 10.03</p>
+          <h4>제5회 서노송예술제 ‘만인의 동네’ 부스</h4>
+          <p>전주소통협력센터 2026 전주 브랜딩 클럽과 함께 서노송예술촌에서 볕채 조립 체험과 현장 판매를 열었습니다.</p>
+        </li>
+        <li>
+          <p class="e-when">2026.09.12</p>
+          <h4>전북대 유학생과 함께한 첫 볕채 조립 체험</h4>
+          <p>전북대학교 국제센터에서 인도, 네팔, 말레이시아, 베트남 등 여러 나라 유학생이 한옥을 한 칸씩 직접 지었습니다.</p>
+        </li>
+        <li>
+          <p class="e-when">2026.07.06 – 07.08</p>
+          <h4>전북대학교 졸업전시 볕채 시리즈 전시</h4>
+          <p>볕채 시리즈를 전시하고 부스를 운영하며 책갈피 반응을 모아 개선에 반영했습니다.</p>
+        </li>
+      </ul>
+
+      <h3 class="sub-head">연혁</h3>
 
       <div class="log">
         <div class="log-row">
@@ -936,12 +1008,32 @@ section { padding: 140px 0; }
           <p>전주시소통협력센터 전주살LAB. 전주 국가유산 기반 제품 개발과 지역 연계.</p>
         </div>
         <div class="log-row">
+          <span class="when now">준비 중</span>
+          <p>볕채 리뉴얼과 두 번째 텀블벅 프로젝트.</p>
+        </div>
+        <div class="log-row">
+          <span class="when">2026.10</span>
+          <p>하마비 네이버 스마트스토어 출시. 교육지원청에 문창살 책갈피 납품.</p>
+        </div>
+        <div class="log-row">
+          <span class="when">2026.09</span>
+          <p>네이버 스마트스토어 오픈. 볕채 한칸집 정규 판매 시작.</p>
+        </div>
+        <div class="log-row">
+          <span class="when">2026.08</span>
+          <p>펀딩 리워드를 자체 설비에서 전량 생산해 발송.</p>
+        </div>
+        <div class="log-row">
           <span class="when">2026.07</span>
-          <p>첫 텀블벅 펀딩 <span class="pct">532%</span> 달성. 후원자 80명.</p>
+          <p>첫 텀블벅 펀딩 <span class="pct">542%</span> 달성. 후원자 85명. 한채 로고 상표 출원.</p>
         </div>
         <div class="log-row">
           <span class="when">2026.06</span>
-          <p>볕채 시리즈 텀블벅 오픈.</p>
+          <p>볕채 시리즈 텀블벅 오픈. 학생창업유망팀300+, 모두의 창업 선정.</p>
+        </div>
+        <div class="log-row">
+          <span class="when">2026.05</span>
+          <p>한채 사업자 등록. 전주살LAB 최종 선정.</p>
         </div>
       </div>
     </div>
@@ -1008,7 +1100,7 @@ section { padding: 140px 0; }
 
         <div class="cell">
           <h3>문창살 다섯 무늬</h3>
-          <p>조명에는 세 무늬, 책갈피에는 다섯 무늬를 씁니다.</p>
+          <p>조명과 책갈피 모두 다섯 무늬 가운데 고를 수 있습니다.</p>
 
           <div class="lattice">
             <div class="lat">
@@ -1127,7 +1219,7 @@ section { padding: 140px 0; }
           <p>부재를 순서대로 끼우면 구조가 스스로 섭니다. 외형을 흉내 낸 것이 아니라
              한옥이 세워지는 순서를 그대로 겪게 만든 것입니다.
              마지막에 불을 켜면 문창살 그림자가 벽에 깔립니다.</p>
-          <p>무늬는 완자, 귀갑, 아자 중에서 고릅니다. 만복, 장수, 존경.
+          <p>무늬는 완자, 귀갑, 아자, 꽃, 숫대 다섯 가지 중에서 고릅니다. 만복, 장수, 존경, 사랑, 학업.
              받는 사람에게 건넬 말을 무늬로 고르는 셈입니다.</p>
         </div>
         <div>
@@ -1141,7 +1233,7 @@ section { padding: 140px 0; }
           </dl>
           <dl class="chunk">
             <dt>사용</dt>
-            <dd>부재 31개(한칸) / 56개(세칸)<br>조립 약 30분, 공구 불필요<br><b>AA 건전지 3개 (미포함)</b><br>문창살 세 무늬 중 택 1</dd>
+            <dd>부재 31개(한칸) / 56개(세칸)<br>조립 약 15분(한칸), 공구 불필요<br><b>AA 건전지 3개 (미포함)</b><br>문창살 다섯 무늬 중 택 1</dd>
           </dl>
           <!-- [학습] 가격은 브랜드 페이지에서 크게 외치지 않습니다.
                찾는 사람에게는 보이고, 톤은 흐트러지지 않는 크기로 둡니다. -->
@@ -1158,14 +1250,14 @@ section { padding: 140px 0; }
         <img src="images/hamabi-product.jpg" loading="lazy"
              alt="하마비 시제품. 至此皆下馬 雜人毋得入이 새겨진 비신을 판석이 받치고, 그 아래 암수 사자 석수 한 쌍이 판석을 떠받치고 있다">
       </figure>
-      <p class="pill">2026년 9월 말 출시 예정</p>
+      <p class="pill">네이버 스마트스토어 판매 중</p>
       <h2 class="title">하마비
         <span class="en">Hamabi. The place your phone dismounts.</span>
       </h2>
       <p>경기전 하마비의 예법을 휴대폰을 내려놓는 자리로 옮겼습니다.
         비신과 판석, 암수 석수의 구성은 그대로 두고, 두 사자가 휴대폰을 받치도록 다시 짰습니다.
         말에서 내리라던 문장이 오늘은 잠시 폰을 내려두라는 말이 됩니다.
-        시제품 제작을 마치고 9월 말 출시를 준비하고 있습니다.</p>
+        2026년 10월부터 네이버 스마트스토어에서 판매하고 있습니다.</p>
       <p class="more-coming">볕채와 하마비 다음으로, 전주의 다른 공간유산도 차례로 옮기고 있습니다.</p>
     </div>
   </section>
@@ -1180,7 +1272,7 @@ section { padding: 140px 0; }
       <div class="faq-list">
         <details>
           <summary>조립이 어렵지 않나요? 도구가 필요한가요?</summary>
-          <p>설명서를 보며 만들면 성인 기준으로 30분쯤 걸립니다. 공구는 필요하지 않습니다.
+          <p>설명서를 보며 만들면 한칸 기준 15분쯤 걸립니다. 공구는 필요하지 않습니다.
              설명서에 있는 QR을 찍으면 조립 영상을 보면서 따라 하실 수 있습니다.</p>
         </details>
         <details>
@@ -1207,7 +1299,7 @@ section { padding: 140px 0; }
         </details>
         <details>
           <summary>배송은 얼마나 걸리나요?</summary>
-          <p>주문을 받고 만들기 때문에 일정이 달라질 수 있습니다.
+          <p>볕채는 매달 일정 수량을 미리 만들어 두기 때문에 재고가 있으면 바로 출고합니다.
              배송비와 배송 일정은 네이버 스마트스토어의 안내를 확인해 주세요.</p>
         </details>
       </div>
@@ -1221,8 +1313,9 @@ section { padding: 140px 0; }
     <div class="wrap">
       <h2>기관의 굿즈와 교육 키트를 함께 만듭니다</h2>
       <p>박물관, 문화재단, 지자체, 기업의 기념품을 기획부터 생산까지 맡습니다.
-        외주가 아니라 자체 3D프린팅 설비로 만들기 때문에 소량 커스텀과 무늬 신규 제작이 가능합니다.
+        외주가 아니라 자체 3D프린터 일곱 대로 만들기 때문에 소량 커스텀과 무늬 신규 제작이 가능합니다.
         고증이 필요한 소재일수록 잘합니다.</p>
+      <p>엑스포 기념품으로 문창살 책갈피 325개를, 교육지원청에 문창살 책갈피를 납품했습니다.</p>
       <p>조립하며 한옥의 구조를 배우는 체험 키트와 교구도 개발하고 있습니다.
         국가유산야행 같은 지역 행사, 학생 대상 프로그램과 연계한 운영도 가능합니다.</p>
       <button type="button" class="btn btn-line" id="inquiryBtn"
