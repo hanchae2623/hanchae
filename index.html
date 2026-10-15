@@ -548,6 +548,11 @@ section { padding: 140px 0; }
 .events .e-when .now { font-family: var(--font-body); letter-spacing: 0; font-weight: 600; background: var(--accent); color: var(--on-accent); padding: 2px 9px; }
 .events h4 { font-family: var(--font-title); font-size: 19px; font-weight: 600; line-height: 1.45; margin-top: 12px; color: var(--ink); }
 .events p { font-size: 15px; color: var(--ink-soft); margin-top: 8px; }
+/* 인스타 게시물로 넘어가는 링크. 카드 문단 아래에 작게 둡니다 */
+.events .e-link { display: inline-block; margin-top: 14px; font-size: 14px; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.events .e-link:hover { color: var(--ink-soft); }
+/* 행사 현장 사진. 카드 안쪽 여백을 무시하고 칸 폭에 꽉 붙여 위에 얹습니다 */
+.events .e-photo { display: block; width: calc(100% + 2 * clamp(20px, 2.6vw, 30px)); max-width: none; height: auto; aspect-ratio: 16 / 10; object-fit: cover; margin: -24px calc(-1 * clamp(20px, 2.6vw, 30px)) 20px; }
 
 /* 섹션 안의 소제목. 팀 / 지원사업 / 연혁을 나누는 층 */
 .sub-head {
@@ -975,21 +980,28 @@ section { padding: 140px 0; }
       <h3 class="sub-head">행사와 부스</h3>
       <ul class="events">
         <li>
+          <img class="e-photo" src="images/event-marketsoso-261013.jpg" alt="마켓소소 팝업 부스에 놓인 볕채 한칸·세칸 조명과 문창살 의미 안내판" loading="lazy" width="1080" height="675">
           <p class="e-when"><span class="now">진행 중</span>2026.10.13 – 10.30</p>
           <h4>마켓소소 팝업</h4>
           <p>전주소통협력센터 본관 1층 팝업홍보존. 볕채 부재 조립 체험과 함께 하마비, 문창살 책갈피, 이곳에서 처음 선보이는 풍남문 책갈피를 만나실 수 있습니다. 평일 09:00–18:00.</p>
+          <a class="e-link" href="https://www.instagram.com/reel/Ded0y2PPSu1/" target="_blank" rel="noopener">인스타그램에서 보기 →</a>
         </li>
         <li>
+          <img class="e-photo" src="images/event-seonosong-261003.jpg" alt="서노송예술제 한채 부스. ‘국가유산을 일상으로 한채’ 현수막을 건 테이블 위 볕채 조명과 안내판" loading="lazy" width="1600" height="1000">
           <p class="e-when">2026.10.02 – 10.03</p>
           <h4>제5회 서노송예술제 ‘만인의 동네’ 부스</h4>
           <p>전주소통협력센터 2026 전주 브랜딩 클럽과 함께 서노송예술촌에서 볕채 조립 체험과 현장 판매를 열었습니다.</p>
+          <a class="e-link" href="https://www.instagram.com/p/DegKXCoj5fL/" target="_blank" rel="noopener">인스타그램에서 보기 →</a>
         </li>
         <li>
+          <img class="e-photo" src="images/event-intl-students-260912.jpg" alt="볕채 한칸 조명과 ‘보는 국가유산에서 경험하는 국가유산으로’ 현수막을 함께 든 전북대 유학생과 한채 팀 단체사진" loading="lazy" width="1440" height="900">
           <p class="e-when">2026.09.12</p>
           <h4>전북대 유학생과 함께한 첫 볕채 조립 체험</h4>
           <p>전북대학교 국제센터에서 인도, 네팔, 말레이시아, 베트남 등 여러 나라 유학생이 한옥을 한 칸씩 직접 지었습니다.</p>
+          <a class="e-link" href="https://www.instagram.com/p/DdiceWJD4Bk/" target="_blank" rel="noopener">인스타그램에서 보기 →</a>
         </li>
         <li>
+          <img class="e-photo" src="images/event-graduation-260706.jpg" alt="전북대학교 졸업전시 한채 부스. 남색 테이블 위 볕채 조명과 문창살 책갈피, 안내판 세 장" loading="lazy" width="768" height="480">
           <p class="e-when">2026.07.06 – 07.08</p>
           <h4>전북대학교 졸업전시 볕채 시리즈 전시</h4>
           <p>볕채 시리즈를 전시하고 부스를 운영하며 책갈피 반응을 모아 개선에 반영했습니다.</p>
